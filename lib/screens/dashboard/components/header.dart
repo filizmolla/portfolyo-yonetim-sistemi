@@ -1,10 +1,7 @@
-import 'package:untitled/controllers/MenuAppController.dart';
+import 'package:untitled/core/constants/color_constants.dart';
 import 'package:untitled/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
-
-import '../../../constants.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -18,12 +15,25 @@ class Header extends StatelessWidget {
         if (!Responsive.isDesktop(context))
           IconButton(
             icon: Icon(Icons.menu),
-            onPressed: context.read<MenuAppController>().controlMenu,
+            onPressed: () {},
           ),
         if (!Responsive.isMobile(context))
-          Text(
-            "Dashboard",
-            style: Theme.of(context).textTheme.titleLarge,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Hello, Deniz 👋",
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                "Wellcome to your dashboard",
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
+            ],
           ),
         if (!Responsive.isMobile(context))
           Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
@@ -54,15 +64,14 @@ class ProfileCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(
-            "assets/images/profile_pic.png",
-            height: 38,
+          CircleAvatar(
+            backgroundImage: AssetImage("assets/images/profile_pic.png"),
           ),
           if (!Responsive.isMobile(context))
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-              child: Text("Angelina Jolie"),
+              child: Text("Deniz Çolak"),
             ),
           Icon(Icons.keyboard_arrow_down),
         ],
@@ -93,10 +102,12 @@ class SearchField extends StatelessWidget {
             padding: EdgeInsets.all(defaultPadding * 0.75),
             margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
             decoration: BoxDecoration(
-              color: primaryColor,
+              color: greenColor,
               borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
-            child: SvgPicture.asset("assets/icons/Search.svg"),
+            child: SvgPicture.asset(
+              "assets/icons/Search.svg",
+            ),
           ),
         ),
       ),

@@ -1,12 +1,13 @@
+import 'package:untitled/core/constants/color_constants.dart';
+import 'package:untitled/models/daily_info_model.dart';
 
 import 'package:untitled/responsive.dart';
+import 'package:untitled/screens/dashboard/components/mini_information_widget.dart';
+import 'package:untitled/screens/forms/input_form.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/models/MyFiles.dart';
-import '../../../constants.dart';
-import 'file_info_card.dart';
 
-class MyFiles extends StatelessWidget {
-  const MyFiles({
+class MiniInformation extends StatelessWidget {
+  const MiniInformation({
     Key? key,
   }) : super(key: key);
 
@@ -18,33 +19,41 @@ class MyFiles extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "My Files",
-              style: Theme.of(context).textTheme.titleMedium,
+            SizedBox(
+              width: 10,
             ),
             ElevatedButton.icon(
               style: TextButton.styleFrom(
+                backgroundColor: Colors.green,
                 padding: EdgeInsets.symmetric(
                   horizontal: defaultPadding * 1.5,
                   vertical:
                       defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(new MaterialPageRoute<Null>(
+                    builder: (BuildContext context) {
+                      return new FormMaterial();
+                    },
+                    fullscreenDialog: true));
+              },
               icon: Icon(Icons.add),
-              label: Text("Add New"),
+              label: Text(
+                "Add New",
+              ),
             ),
           ],
         ),
         SizedBox(height: defaultPadding),
         Responsive(
-          mobile: FileInfoCardGridView(
+          mobile: InformationCard(
             crossAxisCount: _size.width < 650 ? 2 : 4,
-            childAspectRatio: _size.width < 650 ? 1.3 : 1,
+            childAspectRatio: _size.width < 650 ? 1.2 : 1,
           ),
-          tablet: FileInfoCardGridView(),
-          desktop: FileInfoCardGridView(
-            childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
+          tablet: InformationCard(),
+          desktop: InformationCard(
+            childAspectRatio: _size.width < 1400 ? 1.2 : 1.4,
           ),
         ),
       ],
@@ -52,10 +61,10 @@ class MyFiles extends StatelessWidget {
   }
 }
 
-class FileInfoCardGridView extends StatelessWidget {
-  const FileInfoCardGridView({
+class InformationCard extends StatelessWidget {
+  const InformationCard({
     Key? key,
-    this.crossAxisCount = 4,
+    this.crossAxisCount = 5,
     this.childAspectRatio = 1,
   }) : super(key: key);
 
@@ -67,14 +76,15 @@ class FileInfoCardGridView extends StatelessWidget {
     return GridView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: demoMyFiles.length,
+      itemCount: dailyDatas.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: defaultPadding,
         mainAxisSpacing: defaultPadding,
         childAspectRatio: childAspectRatio,
       ),
-      itemBuilder: (context, index) => FileInfoCard(info: demoMyFiles[index]),
+      itemBuilder: (context, index) =>
+          MiniInformationWidget(dailyData: dailyDatas[index]),
     );
   }
 }
