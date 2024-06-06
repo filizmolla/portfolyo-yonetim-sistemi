@@ -1,0 +1,38 @@
+[
+  {
+    "name": "frontend_developer",
+    "maxSlot": 5,
+    "occupied": 0,
+    "available": 5
+  },
+  {
+    "name": "backend_developer",
+    "maxSlot": 5,
+    "occupied": 0,
+    "available": 5
+  },
+  {
+    "name": "analyst",
+    "maxSlot": 4,
+    "occupied": 0,
+    "available": 4
+  },
+  {
+    "name": "quality_assurance_tester",
+    "maxSlot": 4,
+    "occupied": 0,
+    "available": 4
+  },
+  {
+    "name": "devops",
+    "maxSlot": 3,
+    "occupied": 0,
+    "available": 3 
+  },
+  {
+    "name": "database_developer",
+    "maxSlot": 3,
+    "occupied": 0,
+    "available": 3  
+  }
+]

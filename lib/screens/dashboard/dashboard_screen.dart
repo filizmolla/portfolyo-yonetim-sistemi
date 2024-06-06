@@ -8,6 +8,7 @@ import 'package:untitled/screens/dashboard/components/recent_users.dart';
 import 'package:untitled/screens/dashboard/components/user_details_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../projects/components/projects_table.dart';
 import 'components/header.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -33,7 +34,7 @@ class DashboardScreen extends StatelessWidget {
                       children: [
                         //MyFiels(),
                         //SizedBox(height: defaultPadding),
-                        RecentUsers(),
+                        ProjectsTable(),
                         SizedBox(height: defaultPadding),
                         RecentDiscussions(),
                         if (Responsive.isMobile(context))

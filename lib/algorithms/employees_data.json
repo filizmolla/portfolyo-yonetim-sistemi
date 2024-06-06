@@ -1,0 +1,108 @@
+[
+  {
+    "name": "John",
+    "surname": "Doe",
+    "salary": 1000,
+    "role": "frontend developer",
+    "maxProjects": 2,
+    "currentProjectsCount": 0
+
+  },
+  {
+    "name": "Alice",
+    "surname": "Smith",
+    "salary": 1200,
+    "role": "frontend developer",
+    "maxProjects": 3,
+    "currentProjectsCount": 0
+  },
+  {
+    "name": "Bob",
+    "surname": "Johnson",
+    "salary": 1100,
+    "role": "backend developer",
+    "maxProjects": 2,
+    "currentProjectsCount": 0
+  },
+  {
+    "name": "Charlie",
+    "surname": "Brown",
+    "salary": 1300,
+    "role": "backend developer",
+    "maxProjects": 2,
+    "currentProjectsCount": 0
+  },
+  {
+    "name": "David",
+    "surname": "Williams",
+    "salary": 1050,
+    "role": "backend developer",
+    "maxProjects": 1,
+    "currentProjectsCount": 0
+  },
+  {
+    "name": "Emma",
+    "surname": "Jones",
+    "salary": 1150,
+    "role": "devops",
+    "maxProjects": 1,
+    "currentProjectsCount": 0
+  },
+  {
+    "name": "Frank",
+    "surname": "Garcia",
+    "salary": 1250,
+    "role": "devops",
+    "maxProjects": 2,
+    "currentProjectsCount": 0
+  },
+  {
+    "name": "Grace",
+    "surname": "Martinez",
+    "salary": 1400,
+    "role": "database developer",
+    "maxProjects": 1,
+    "currentProjectsCount": 0
+  },
+  {
+    "name": "Henry",
+    "surname": "Lee",
+    "salary": 1350,
+    "role": "database developer",
+    "maxProjects": 2,
+    "currentProjectsCount": 0
+  },
+  {
+    "name": "Isabel",
+    "surname": "Walker",
+    "salary": 1150,
+    "role": "tester",
+    "maxProjects": 2,
+    "currentProjectsCount": 0
+  },
+  {
+    "name": "Jack",
+    "surname": "Harris",
+    "salary": 1250,
+    "role": "tester",
+    "maxProjects": 2,
+    "currentProjectsCount": 0
+  },
+  {
+    "name": "Holly",
+    "surname": "Swift",
+    "salary": 1050,
+    "role": "analyst",
+    "maxProjects": 2,
+    "currentProjectsCount": 0
+  }, 
+  {
+    "name": "Jack",
+    "surname": "Calvin",
+    "salary": 1250,
+    "role": "analyst",
+    "maxProjects": 2,
+    "currentProjectsCount": 0
+  }
+
+]

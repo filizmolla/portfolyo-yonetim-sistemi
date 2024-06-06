@@ -1,0 +1,1 @@
+GET localhost:8000/brute_force/?duration=20&budget=20/

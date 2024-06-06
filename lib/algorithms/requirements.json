@@ -1,0 +1,182 @@
+[
+  {
+    "project_id": 1,
+    "backend developer": 0,
+    "frontend developer": 0,
+    "analyst": 0,
+    "quality assurance tester": 0,
+    "devops":  2,
+    "database developer":0
+  },
+  {
+    "project_id": 2,
+    "backend developer": 2,
+    "frontend developer": 1,
+    "analyst": 1,
+    "quality assurance tester": 0,
+    "devops": 2 ,
+    "database developer":1
+  },
+  {
+    "project_id": 3,
+    "backend developer": 1,
+    "frontend developer": 0,
+    "analyst": 0,
+    "quality assurance tester": 2,
+    "devops":  1,
+    "database developer": 1
+  },
+  {
+    "project_id": 4,
+    "backend developer":1 ,
+    "frontend developer": 1,
+    "analyst":1 ,
+    "quality assurance tester": 2,
+    "devops": 0 ,
+    "database developer":0
+  },
+  {
+    "project_id": 5,
+    "backend developer": 2,
+    "frontend developer":2 ,
+    "analyst":1 ,
+    "quality assurance tester": 2,
+    "devops":2  ,
+    "database developer":1
+  },
+  {
+    "project_id": 6,
+    "backend developer": 0,
+    "frontend developer":2 ,
+    "analyst":1 ,
+    "quality assurance tester": 0,
+    "devops": 1 ,
+    "database developer":2
+  },
+  {
+    "project_id": 7,
+    "backend developer":1 ,
+    "frontend developer":1 ,
+    "analyst": 2,
+    "quality assurance tester": 0,
+    "devops":  2,
+    "database developer":0
+  },
+  {
+    "project_id": 8,
+    "backend developer": 1,
+    "frontend developer": 2,
+    "analyst":0 ,
+    "quality assurance tester":1 ,
+    "devops":1  ,
+    "database developer":0
+  },
+  {
+    "project_id": 9,
+    "backend developer": 2,
+    "frontend developer":2 ,
+    "analyst":2 ,
+    "quality assurance tester":1 ,
+    "devops":2  ,
+    "database developer":0
+  },
+  {
+    "project_id": 10,
+    "backend developer":2 ,
+    "frontend developer":1 ,
+    "analyst":1 ,
+    "quality assurance tester": 2,
+    "devops":1  ,
+    "database developer":0
+  },
+  {
+    "project_id": 11,
+    "backend developer": 1,
+    "frontend developer": 1,
+    "analyst": 0,
+    "quality assurance tester": 1,
+    "devops":2  ,
+    "database developer":1
+  },
+  {
+    "project_id": 12,
+    "backend developer": 2,
+    "frontend developer": 1,
+    "analyst": 2,
+    "quality assurance tester": 1,
+    "devops": 2 ,
+    "database developer":0
+  },
+  {
+    "project_id": 13,
+    "backend developer": 1,
+    "frontend developer": 2,
+    "analyst": 1,
+    "quality assurance tester": 2,
+    "devops":  1,
+    "database developer":0
+  },
+  {
+    "project_id": 14,
+    "backend developer": 2,
+    "frontend developer": 1,
+    "analyst": 1,
+    "quality assurance tester": 2,
+    "devops": 1 ,
+    "database developer":0
+  },
+  {
+    "project_id": 15,
+    "backend developer": 1,
+    "frontend developer": 1,
+    "analyst": 1,
+    "quality assurance tester": 0,
+    "devops":  1,
+    "database developer":0
+  },
+  {
+    "project_id": 16,
+    "backend developer": 2,
+    "frontend developer": 2,
+    "analyst": 2,
+    "quality assurance tester": 1,
+    "devops": 2 ,
+    "database developer":0
+  },
+  {
+    "project_id": 17,
+    "backend developer": 1,
+    "frontend developer": 2,
+    "analyst": 1,
+    "quality assurance tester": 1,
+    "devops": 0 ,
+    "database developer":1
+  },
+  {
+    "project_id": 18,
+    "backend developer": 1,
+    "frontend developer": 1,
+    "analyst": 1,
+    "quality assurance tester": 0,
+    "devops": 1 ,
+    "database developer":0
+  },
+  {
+    "project_id": 19,
+    "backend developer": 2,
+    "frontend developer":2 ,
+    "analyst": 1,
+    "quality assurance tester": 2,
+    "devops": 1 ,
+    "database developer":0
+  },
+  {
+    "project_id": 20,
+    "backend developer": 1,
+    "frontend developer": 2,
+    "analyst": 1,
+    "quality assurance tester": 1,
+    "devops":  0,
+    "database developer":0
+  }
+]

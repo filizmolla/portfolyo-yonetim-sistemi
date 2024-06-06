@@ -1,4 +1,4 @@
-class Project {
+class AcceptedProject {
   final String name;
   final String description;
   final bool isLegalObligation;
@@ -6,7 +6,7 @@ class Project {
   final int predictedDuration;
   final int predictedReturn;
 
-  Project({
+  AcceptedProject({
     required this.name,
     required this.description,
     required this.isLegalObligation,
@@ -14,22 +14,9 @@ class Project {
     required this.predictedDuration,
     required this.predictedReturn,
   });
-
-  factory Project.fromJson(Map<String, dynamic> json) {
-    return Project(
-      name: json['name'],
-      description: json['description'],
-      isLegalObligation: json['isLegalObligation'],
-      predictedBudget: json['predictedBudget'],
-      predictedDuration: json['predictedDuration'],
-      predictedReturn: json['predictedReturn'],
-    );
-  }
-
-
 }
-List<Project> mockProjects = [
-  Project(
+List<AcceptedProject> mockProjects = [
+  AcceptedProject(
     name: "Project A",
     description: "Description of Project A",
     isLegalObligation: true,
@@ -37,7 +24,7 @@ List<Project> mockProjects = [
     predictedDuration: 25,
     predictedReturn: 15000,
   ),
-  Project(
+  AcceptedProject(
     name: "Project B",
     description: "Description of Project B",
     isLegalObligation: false,
@@ -45,7 +32,7 @@ List<Project> mockProjects = [
     predictedDuration: 30,
     predictedReturn: 18000,
   ),
-  Project(
+  AcceptedProject(
     name: "Project C",
     description: "Description of Project C",
     isLegalObligation: true,

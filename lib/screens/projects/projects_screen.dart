@@ -8,7 +8,7 @@ import 'package:untitled/screens/dashboard/components/recent_forums.dart';
 import 'package:untitled/screens/dashboard/components/recent_users.dart';
 import 'package:untitled/screens/dashboard/components/user_details_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/screens/projects/components/projects_table.dart';
+import 'package:untitled/screens/projects/components/accepted_projects_table.dart';
 
 import '../dashboard/components/header.dart';
 
@@ -33,7 +33,7 @@ class ProjectsScreen extends StatelessWidget {
                       children: [
                         //MyFiels(),
                         //SizedBox(height: defaultPadding),
-                        ProjectsTable(),
+                        AcceptedProjectsTable(),
                         SizedBox(height: defaultPadding),
                         if (Responsive.isMobile(context))
                           SizedBox(height: defaultPadding),
