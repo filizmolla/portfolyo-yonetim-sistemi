@@ -1,11 +1,18 @@
+import 'package:get/get_core/src/get_main.dart';
 import 'package:untitled/core/constants/color_constants.dart';
 import 'package:untitled/core/init/provider_list.dart';
 import 'package:untitled/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:get/get.dart';
+import 'package:untitled/controllers/navigation_controller.dart';
+
+import 'controllers/side_menu_controller.dart';
 
 void main() {
+  Get.put(SideMenuController());
+  Get.put(NavigationController());
   runApp(MyApp());
 }
 

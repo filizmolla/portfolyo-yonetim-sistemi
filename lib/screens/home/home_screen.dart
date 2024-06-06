@@ -1,7 +1,8 @@
+import 'package:untitled/helpers/local_navigator.dart';
 import 'package:untitled/responsive.dart';
 import 'package:untitled/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:untitled/screens/projects/projects_screen.dart';
 import 'components/side_menu.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,7 +25,7 @@ class HomeScreen extends StatelessWidget {
             Expanded(
               // It takes 5/6 part of the screen
               flex: 5,
-              child: DashboardScreen(),
+              child: localNavigator(),
             ),
           ],
         ),

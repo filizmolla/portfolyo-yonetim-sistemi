@@ -1,6 +1,14 @@
+import 'package:provider/provider.dart';
 import 'package:untitled/core/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../controllers/controllers.dart';
+import '../../../controllers/side_menu_controller.dart';
+import '../../../core/constants/routes.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
@@ -16,60 +24,41 @@ class SideMenu extends StatelessWidget {
           children: [
             DrawerHeader(
                 child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: defaultPadding * 3,
-                ),
-                Image.asset(
-                  "assets/logo/logo_icon.png",
-                  scale: 5,
-                ),
-                SizedBox(
-                  height: defaultPadding,
-                ),
-                Text("Smart HR - Application")
-              ],
-            )),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: defaultPadding * 3,
+                    ),
+                    Image.asset(
+                      "assets/logo/logo_icon.png",
+                      scale: 5,
+                    ),
+                    SizedBox(
+                      height: defaultPadding,
+                    ),
+                    Text("Smart HR - Application")
+                  ],
+                )),
             DrawerListTile(
               title: "Dashboard",
               svgSrc: "assets/icons/menu_dashbord.svg",
-              press: () {},
+              press: () {
+                SideMenuController.instance.changeActiveItemTo(dashboard);
+                navigationController.navigateTo(dashboard);
+
+              },
             ),
             DrawerListTile(
-              title: "Posts",
+              title: "Projects",
               svgSrc: "assets/icons/menu_tran.svg",
-              press: () {},
-            ),
-            DrawerListTile(
-              title: "Pages",
-              svgSrc: "assets/icons/menu_task.svg",
-              press: () {},
-            ),
-            DrawerListTile(
-              title: "Categories",
-              svgSrc: "assets/icons/menu_doc.svg",
-              press: () {},
-            ),
-            DrawerListTile(
-              title: "Appearance",
-              svgSrc: "assets/icons/menu_store.svg",
-              press: () {},
-            ),
-            DrawerListTile(
-              title: "Users",
-              svgSrc: "assets/icons/menu_notification.svg",
-              press: () {},
-            ),
-            DrawerListTile(
-              title: "Tools",
-              svgSrc: "assets/icons/menu_profile.svg",
-              press: () {},
-            ),
-            DrawerListTile(
-              title: "Settings",
-              svgSrc: "assets/icons/menu_setting.svg",
-              press: () {},
+              press: () {
+                SideMenuController.instance.changeActiveItemTo(projects);
+                navigationController.navigateTo(projects);
+
+
+
+
+              },
             ),
           ],
         ),

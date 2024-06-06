@@ -2,6 +2,8 @@ import 'package:untitled/core/constants/color_constants.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+// what does dailyInfo Model Do
+// DailyInfoModel is a model class that contains the data for the daily info widget.
 
 class DailyInfoModel {
   IconData? icon;
