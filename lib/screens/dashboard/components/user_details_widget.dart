@@ -21,39 +21,6 @@ class UserDetailsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CalendarWidget(),
-          Text(
-            "Employment Details",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          SizedBox(height: defaultPadding),
-          Chart(),
-          UserDetailsMiniCard(
-            color: Color(0xff0293ee),
-            title: "Technical Interview",
-            amountOfFiles: "%28.3",
-            numberOfIncrease: 1328,
-          ),
-          UserDetailsMiniCard(
-            color: Color(0xfff8b250),
-            title: "HR Interview",
-            amountOfFiles: "%16.7",
-            numberOfIncrease: 1328,
-          ),
-          UserDetailsMiniCard(
-            color: Color(0xff845bef),
-            title: "Final Interview",
-            amountOfFiles: "%22.4",
-            numberOfIncrease: 1328,
-          ),
-          UserDetailsMiniCard(
-            color: Color(0xff13d38e),
-            title: "Rejected",
-            amountOfFiles: "%2.3",
-            numberOfIncrease: 140,
-          ),
         ],
       ),
     );

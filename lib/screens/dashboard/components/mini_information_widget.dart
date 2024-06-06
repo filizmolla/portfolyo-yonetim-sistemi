@@ -35,17 +35,13 @@ class _MiniInformationWidgetState extends State<MiniInformationWidget> {
             children: [
               Container(
                 padding: EdgeInsets.all(defaultPadding * 0.75),
-                height: 40,
-                width: 40,
+                height: 50,
+                width: 100,
                 decoration: BoxDecoration(
                   color: widget.dailyData.color!.withOpacity(0.1),
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),
-                child: Icon(
-                  widget.dailyData.icon,
-                  color: widget.dailyData.color,
-                  size: 18,
-                ),
+                child: Text("Budget")
               ),
               Padding(
                 padding: EdgeInsets.only(right: 12.0),
@@ -56,53 +52,32 @@ class _MiniInformationWidgetState extends State<MiniInformationWidget> {
                   value: _value,
                   items: [
                     DropdownMenuItem(
-                      child: Text("Daily"),
+                      child: Text("Predicted"),
                       value: 1,
                     ),
                     DropdownMenuItem(
-                      child: Text("Weekly"),
+                      child: Text("Best"),
                       value: 2,
                     ),
                     DropdownMenuItem(
-                      child: Text("Monthly"),
+                      child: Text("Worst"),
                       value: 3,
                     ),
                   ],
                   onChanged: (int? value) {
                     setState(() {
-                      _value = value!;
+                      _value = value!; // Assign the value to the selected value
                     });
                   },
                 ),
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                widget.dailyData.title!,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Container(
-                child: LineChartWidget(
-                  colors: widget.dailyData.colors,
-                  spotsData: widget.dailyData.spots,
-                ),
-              )
-            ],
-          ),
+
           SizedBox(
             height: 8,
           ),
-          ProgressLine(
-            color: widget.dailyData.color!,
-            percentage: widget.dailyData.percentage!,
-          ),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -168,39 +143,4 @@ class LineChartWidget extends StatelessWidget {
   }
 }
 
-class ProgressLine extends StatelessWidget {
-  const ProgressLine({
-    Key? key,
-    this.color = primaryColor,
-    required this.percentage,
-  }) : super(key: key);
 
-  final Color color;
-  final int percentage;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: double.infinity,
-          height: 5,
-          decoration: BoxDecoration(
-            color: color.withOpacity(0.1),
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-        ),
-        LayoutBuilder(
-          builder: (context, constraints) => Container(
-            width: constraints.maxWidth * (percentage / 100),
-            height: 5,
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}

@@ -1,6 +1,7 @@
 import 'package:get/get_core/src/get_main.dart';
 import 'package:untitled/core/constants/color_constants.dart';
 import 'package:untitled/core/init/provider_list.dart';
+import 'package:untitled/screens/home/home_screen.dart';
 import 'package:untitled/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor,
       ),
-      home: Login(title: "Welcome to the Admin & Dashboard Panel"),
+      //home: Login(title: "Welcome to the Admin & Dashboard Panel"),
+      home: HomeScreen(),
     );
   }
 }
