@@ -20,40 +20,20 @@ class ApiService {
     }
   }
 
-  // fetchProjects() async {
-  //   try {
-  //     final response = await http.get(Uri.parse('http://localhost:8000/projects'));
-  //     if (response.statusCode == 200) {
-  //       List<dynamic> data = json.decode(response.body);
-  //       if (data.isNotEmpty) {
-  //         columns = data[0].keys.where((key) => !excludedColumns.contains(key)).toList();
-  //       }
-  //       setState(() {
-  //         projects = data.cast<Map<String, dynamic>>();
-  //       });
-  //     } else {
-  //       print('Failed to load projects. Status code: ${response.statusCode}');
-  //       print('Response body: ${response.body}');
-  //       throw Exception('Failed to load projects');
-  //     }
-  //   } catch (e) {
-  //     print('Error occurred while fetching projects: $e');
-  //     throw e;
-  //   }
-  // }
 
-  Future<void> addProject(Map<String, dynamic> projectData) async {
+  Future<void> addProject(Project projectData) async {
     try {
       final response = await http.post(
-        Uri.parse('http://localhost:8000/projects'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
+        Uri.parse('$baseUrl/projects'),
+        headers: {
+          'Content-Type': 'application/json',
         },
         body: jsonEncode(projectData),
       );
 
       if (response.statusCode == 201) {
-        fetchProjects();
+        // Project added successfully
+        print('Project added successfully');
       } else {
         print('Failed to add project. Status code: ${response.statusCode}');
         print('Response body: ${response.body}');
@@ -65,28 +45,7 @@ class ApiService {
     }
   }
 
-  // Future<void> updateProject(int projectId, Map<String, dynamic> projectData) async {
-  //   try {
-  //     final response = await http.put(
-  //       Uri.parse('http://localhost:8000/projects/$projectId'),
-  //       headers: <String, String>{
-  //         'Content-Type': 'application/json; charset=UTF-8',
-  //       },
-  //       body: jsonEncode(projectData),
-  //     );
-  //
-  //     if (response.statusCode == 200) {
-  //       fetchProjects();
-  //     } else {
-  //       print('Failed to update project. Status code: ${response.statusCode}');
-  //       print('Response body: ${response.body}');
-  //       throw Exception('Failed to update project');
-  //     }
-  //   } catch (e) {
-  //     print('Error occurred while updating project: $e');
-  //     throw e;
-  //   }
-  // }
+
 
   Future<void> updateProject(int id, Project project) async {
     final response = await http.put(

@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:untitled/models/project_model.dart'; // Replace with your actual project model import
 import 'package:untitled/services/api_service.dart'; // Replace with your actual API service import
+import 'package:uuid/uuid.dart';
 
 class AddProjectScreen extends StatefulWidget {
   @override
@@ -80,10 +83,20 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
     super.dispose();
   }
 
+  int generateRandomProjectId() {
+    int minId = 1000;
+    int maxId = 9999;
+    final random = Random();
+    return minId + random.nextInt(maxId - minId + 1);
+  }
+
   Future<void> _saveProject() async {
     if (_formKey.currentState!.validate()) {
+      //generate new id for the project
+      int newId = generateRandomProjectId();
+
       Project newProject = Project(
-        id: 0, // You may need to handle IDs based on your API or database setup
+        id: newId,
         name: _nameController.text,
         description: _descriptionController.text,
         projectScope: _projectScopeController.text,
@@ -105,7 +118,7 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
         isApproved: _isApprovedController.text.toLowerCase() == 'true',
       );
 
-      await apiService.addProject(newProject as Map<String, dynamic>); // Adjust API call based on your service
+      await apiService.addProject(newProject); // Adjust API call based on your service
       Navigator.pop(context, true); // Optionally pop the screen after saving
     }
   }
