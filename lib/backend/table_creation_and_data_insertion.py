@@ -5,7 +5,7 @@ from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, ARR
 from sqlalchemy.orm import declarative_base, relationship
 
 # create a database connection
-engine = create_engine('postgresql://postgres:postgres@localhost:5432/portfolyo_yonetim_sistemi')
+engine = create_engine('postgresql://postgres:postgres@localhost:5432/portfolio_management_system')
 
 # create tables and columns from json files
 
@@ -14,30 +14,27 @@ import json
 import os
 
 # Load project and employee data
-# Define hardcoded file paths
-employees_file_path = r'C:\Users\PREDATOR\AndroidStudioProjects\untitled\lib\algorithms\employees_data.json'
-roles_file_path = r'C:\Users\PREDATOR\AndroidStudioProjects\untitled\lib\algorithms\roles_data.json'
-requirements_file_path = r'C:\Users\PREDATOR\AndroidStudioProjects\untitled\lib\algorithms\requirements.json'
-strategies_file_path = r'C:\Users\PREDATOR\AndroidStudioProjects\untitled\lib\algorithms\strategies.json'
-projects_file_path = r'C:\Users\PREDATOR\AndroidStudioProjects\untitled\lib\algorithms\projects_data.json'
+cwd = os.getcwd()
 
-# Load data from JSON files
-with open(employees_file_path) as f:
-    employees = json.load(f)
-
-with open(roles_file_path) as f:
-    roles = json.load(f)
-
-with open(requirements_file_path) as f:
-    requirements = json.load(f)
-
-with open(strategies_file_path) as f:
-    strategies = json.load(f)
-
-with open(projects_file_path) as f:
+json_file_path = os.path.join("lib", "algorithms", 'projects_data.json')
+with open(json_file_path) as f:
     projects = json.load(f)
 
+json_file_path = os.path.join("lib", "algorithms", 'employees_data.json')
+with open(json_file_path) as f:
+    employees = json.load(f)
 
+json_file_path = os.path.join("lib", "algorithms", 'roles_data.json')
+with open(json_file_path) as f:
+    roles = json.load(f)
+
+json_file_path = os.path.join("lib", "algorithms", 'requirements.json')
+with open(json_file_path) as f:
+    requirements = json.load(f)
+
+json_file_path = os.path.join("lib", "algorithms", 'strategies.json')
+with open(json_file_path) as f:
+    strategies = json.load(f)
 
 # Create a base class
 Base = declarative_base()
