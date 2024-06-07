@@ -65,28 +65,42 @@ class ApiService {
     }
   }
 
-  Future<void> updateProject(int projectId, Map<String, dynamic> projectData) async {
-    try {
-      final response = await http.put(
-        Uri.parse('http://localhost:8000/projects/$projectId'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(projectData),
-      );
+  // Future<void> updateProject(int projectId, Map<String, dynamic> projectData) async {
+  //   try {
+  //     final response = await http.put(
+  //       Uri.parse('http://localhost:8000/projects/$projectId'),
+  //       headers: <String, String>{
+  //         'Content-Type': 'application/json; charset=UTF-8',
+  //       },
+  //       body: jsonEncode(projectData),
+  //     );
+  //
+  //     if (response.statusCode == 200) {
+  //       fetchProjects();
+  //     } else {
+  //       print('Failed to update project. Status code: ${response.statusCode}');
+  //       print('Response body: ${response.body}');
+  //       throw Exception('Failed to update project');
+  //     }
+  //   } catch (e) {
+  //     print('Error occurred while updating project: $e');
+  //     throw e;
+  //   }
+  // }
 
-      if (response.statusCode == 200) {
-        fetchProjects();
-      } else {
-        print('Failed to update project. Status code: ${response.statusCode}');
-        print('Response body: ${response.body}');
-        throw Exception('Failed to update project');
-      }
-    } catch (e) {
-      print('Error occurred while updating project: $e');
-      throw e;
+  Future<void> updateProject(int id, Project project) async {
+    final response = await http.put(
+      Uri.parse('$baseUrl/projects/$id'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(project.toJson()),
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to update project');
     }
   }
+
+
 
   Future<void> deleteProject(int projectId) async {
     try {

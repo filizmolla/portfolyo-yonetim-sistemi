@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/models/project_model.dart';
+import 'package:untitled/services/api_service.dart';
 
 class EditProjectScreen extends StatefulWidget {
   final Project project;
+
+
   const EditProjectScreen({Key? key, required this.project}) : super(key: key);
 
   @override
@@ -10,192 +13,245 @@ class EditProjectScreen extends StatefulWidget {
 }
 
 class _EditProjectScreenState extends State<EditProjectScreen> {
-  late TextEditingController nameController;
-  late TextEditingController descriptionController;
-  late TextEditingController projectScopeController;
-  late TextEditingController projectManagerController;
-  late TextEditingController criticalImportanceLevelController;
-  late bool isLegalObligation;
-  late TextEditingController minBudgetController;
-  late TextEditingController maxBudgetController;
-  late TextEditingController predictedBudgetController;
-  late TextEditingController minDurationController;
-  late TextEditingController maxDurationController;
-  late TextEditingController predictedDurationController;
-  late TextEditingController projectDifficultyController;
-  late TextEditingController minReturnController;
-  late TextEditingController maxReturnController;
-  late TextEditingController predictedReturnController;
-  late TextEditingController successMetricsController;
-  late TextEditingController sponsorsController;
-  late TextEditingController priorityController;
-  late bool isApproved;
+  final _formKey = GlobalKey<FormState>();
+
+  late TextEditingController _nameController;
+  late TextEditingController _descriptionController;
+  late TextEditingController _projectScopeController;
+  late TextEditingController _projectManagerController;
+  late TextEditingController _criticalImportanceLevelController;
+  late TextEditingController _isLegalObligationController;
+  late TextEditingController _minBudgetController;
+  late TextEditingController _maxBudgetController;
+  late TextEditingController _predictedBudgetController;
+  late TextEditingController _minDurationController;
+  late TextEditingController _maxDurationController;
+  late TextEditingController _predictedDurationController;
+  late TextEditingController _projectDifficultyController;
+  late TextEditingController _minReturnController;
+  late TextEditingController _maxReturnController;
+  late TextEditingController _predictedReturnController;
+  late TextEditingController _successMetricsController;
+  //late TextEditingController _sponsorsController;
+  late TextEditingController _priorityController;
+  late TextEditingController _isApprovedController;
+
+  final ApiService apiService = ApiService(baseUrl: 'http://localhost:8000');
 
   @override
   void initState() {
     super.initState();
-    nameController = TextEditingController(text: widget.project.name);
-    descriptionController = TextEditingController(text: widget.project.description);
-    projectScopeController = TextEditingController(text: widget.project.projectScope);
-    projectManagerController = TextEditingController(text: widget.project.projectManager);
-    criticalImportanceLevelController = TextEditingController(text: widget.project.criticalImportanceLevel.toString());
-    isLegalObligation = widget.project.isLegalObligation;
-    minBudgetController = TextEditingController(text: widget.project.minBudget.toString());
-    maxBudgetController = TextEditingController(text: widget.project.maxBudget.toString());
-    predictedBudgetController = TextEditingController(text: widget.project.predictedBudget.toString());
-    minDurationController = TextEditingController(text: widget.project.minDuration.toString());
-    maxDurationController = TextEditingController(text: widget.project.maxDuration.toString());
-    predictedDurationController = TextEditingController(text: widget.project.predictedDuration.toString());
-    projectDifficultyController = TextEditingController(text: widget.project.projectDifficulty.toString());
-    minReturnController = TextEditingController(text: widget.project.minReturn.toString());
-    maxReturnController = TextEditingController(text: widget.project.maxReturn.toString());
-    predictedReturnController = TextEditingController(text: widget.project.predictedReturn.toString());
-    successMetricsController = TextEditingController(text: widget.project.successMetrics);
-    sponsorsController = TextEditingController(text: widget.project.sponsors.join(", "));
-    priorityController = TextEditingController(text: widget.project.priority.toString());
-    isApproved = widget.project.isApproved;
+    _nameController = TextEditingController(text: widget.project.name);
+    _descriptionController = TextEditingController(text: widget.project.description);
+    _projectScopeController = TextEditingController(text: widget.project.projectScope);
+    _projectManagerController = TextEditingController(text: widget.project.projectManager);
+    _criticalImportanceLevelController = TextEditingController(text: widget.project.criticalImportanceLevel.toString());
+    _isLegalObligationController = TextEditingController(text: widget.project.isLegalObligation.toString());
+    _minBudgetController = TextEditingController(text: widget.project.minBudget.toString());
+    _maxBudgetController = TextEditingController(text: widget.project.maxBudget.toString());
+    _predictedBudgetController = TextEditingController(text: widget.project.predictedBudget.toString());
+    _minDurationController = TextEditingController(text: widget.project.minDuration.toString());
+    _maxDurationController = TextEditingController(text: widget.project.maxDuration.toString());
+    _predictedDurationController = TextEditingController(text: widget.project.predictedDuration.toString());
+    _projectDifficultyController = TextEditingController(text: widget.project.projectDifficulty.toString());
+    _minReturnController = TextEditingController(text: widget.project.minReturn.toString());
+    _maxReturnController = TextEditingController(text: widget.project.maxReturn.toString());
+    _predictedReturnController = TextEditingController(text: widget.project.predictedReturn.toString());
+    _successMetricsController = TextEditingController(text: widget.project.successMetrics);
+    //_sponsorsController = TextEditingController(text: widget.project.sponsors.join(', '));
+    _priorityController = TextEditingController(text: widget.project.priority.toString());
+    _isApprovedController = TextEditingController(text: widget.project.isApproved.toString());
   }
 
   @override
   void dispose() {
-    nameController.dispose();
-    descriptionController.dispose();
-    projectScopeController.dispose();
-    projectManagerController.dispose();
-    criticalImportanceLevelController.dispose();
-    minBudgetController.dispose();
-    maxBudgetController.dispose();
-    predictedBudgetController.dispose();
-    minDurationController.dispose();
-    maxDurationController.dispose();
-    predictedDurationController.dispose();
-    projectDifficultyController.dispose();
-    minReturnController.dispose();
-    maxReturnController.dispose();
-    predictedReturnController.dispose();
-    successMetricsController.dispose();
-    sponsorsController.dispose();
-    priorityController.dispose();
+    _nameController.dispose();
+    _descriptionController.dispose();
+    _projectScopeController.dispose();
+    _projectManagerController.dispose();
+    _criticalImportanceLevelController.dispose();
+    _isLegalObligationController.dispose();
+    _minBudgetController.dispose();
+    _maxBudgetController.dispose();
+    _predictedBudgetController.dispose();
+    _minDurationController.dispose();
+    _maxDurationController.dispose();
+    _predictedDurationController.dispose();
+    _projectDifficultyController.dispose();
+    _minReturnController.dispose();
+    _maxReturnController.dispose();
+    _predictedReturnController.dispose();
+    _successMetricsController.dispose();
+    //_sponsorsController.dispose();
+    _priorityController.dispose();
+    _isApprovedController.dispose();
     super.dispose();
   }
 
-  void _saveProject() {
-    // Implement save functionality
-    Navigator.of(context).pop();
+  Future<void> _saveProject() async {
+    if (_formKey.currentState!.validate()) {
+      Project updatedProject = Project(
+        id: widget.project.id,
+        name: _nameController.text,
+        description: _descriptionController.text,
+        projectScope: _projectScopeController.text,
+        projectManager: _projectManagerController.text,
+        criticalImportanceLevel: int.parse(_criticalImportanceLevelController.text),
+        isLegalObligation: _isLegalObligationController.text.toLowerCase() == 'true',
+        minBudget: int.parse(_minBudgetController.text),
+        maxBudget: int.parse(_maxBudgetController.text),
+        predictedBudget: int.parse(_predictedBudgetController.text),
+        minDuration: int.parse(_minDurationController.text),
+        maxDuration: int.parse(_maxDurationController.text),
+        predictedDuration: int.parse(_predictedDurationController.text),
+        projectDifficulty: int.parse(_projectDifficultyController.text),
+        minReturn: int.parse(_minReturnController.text),
+        maxReturn: int.parse(_maxReturnController.text),
+        predictedReturn: int.parse(_predictedReturnController.text),
+        successMetrics: _successMetricsController.text,
+        //sponsors: _sponsorsController.text.split(',').map((e) => e.trim()).toList(),
+        priority: int.parse(_priorityController.text),
+        isApproved: _isApprovedController.text.toLowerCase() == 'true',
+      );
+
+      await apiService.updateProject(widget.project.id, updatedProject);
+      Navigator.pop(context, updatedProject);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Project'),
+        title: Text("Edit Project"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
+        child: Form(
+          key: _formKey,
+          child: ListView(
             children: [
-              TextField(
-                controller: nameController,
+              TextFormField(
+                controller: _nameController,
                 decoration: InputDecoration(labelText: 'Project Name'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a project name';
+                  }
+                  return null;
+                },
               ),
-              TextField(
-                controller: descriptionController,
+              TextFormField(
+                controller: _descriptionController,
                 decoration: InputDecoration(labelText: 'Description'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a description';
+                  }
+                  return null;
+                },
               ),
-              TextField(
-                controller: projectScopeController,
+              TextFormField(
+                controller: _projectScopeController,
                 decoration: InputDecoration(labelText: 'Project Scope'),
               ),
-              TextField(
-                controller: projectManagerController,
+              TextFormField(
+                controller: _projectManagerController,
                 decoration: InputDecoration(labelText: 'Project Manager'),
               ),
-              TextField(
-                controller: criticalImportanceLevelController,
+              TextFormField(
+                controller: _criticalImportanceLevelController,
                 decoration: InputDecoration(labelText: 'Critical Importance Level'),
                 keyboardType: TextInputType.number,
               ),
-              SwitchListTile(
-                title: Text('Is Legal Obligation'),
-                value: isLegalObligation,
-                onChanged: (bool value) {
-                  setState(() {
-                    isLegalObligation = value;
-                  });
-                },
+              TextFormField(
+                controller: _isLegalObligationController,
+                decoration: InputDecoration(labelText: 'Is Legal Obligation (true/false)'),
               ),
-              TextField(
-                controller: minBudgetController,
+              TextFormField(
+                controller: _minBudgetController,
                 decoration: InputDecoration(labelText: 'Min Budget'),
                 keyboardType: TextInputType.number,
               ),
-              TextField(
-                controller: maxBudgetController,
+              TextFormField(
+                controller: _maxBudgetController,
                 decoration: InputDecoration(labelText: 'Max Budget'),
                 keyboardType: TextInputType.number,
               ),
-              TextField(
-                controller: predictedBudgetController,
+              TextFormField(
+                controller: _predictedBudgetController,
                 decoration: InputDecoration(labelText: 'Predicted Budget'),
                 keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a predicted budget';
+                  }
+                  return null;
+                },
               ),
-              TextField(
-                controller: minDurationController,
+              TextFormField(
+                controller: _minDurationController,
                 decoration: InputDecoration(labelText: 'Min Duration'),
                 keyboardType: TextInputType.number,
               ),
-              TextField(
-                controller: maxDurationController,
+              TextFormField(
+                controller: _maxDurationController,
                 decoration: InputDecoration(labelText: 'Max Duration'),
                 keyboardType: TextInputType.number,
               ),
-              TextField(
-                controller: predictedDurationController,
+              TextFormField(
+                controller: _predictedDurationController,
                 decoration: InputDecoration(labelText: 'Predicted Duration'),
                 keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a predicted duration';
+                  }
+                  return null;
+                },
               ),
-              TextField(
-                controller: projectDifficultyController,
+              TextFormField(
+                controller: _projectDifficultyController,
                 decoration: InputDecoration(labelText: 'Project Difficulty'),
                 keyboardType: TextInputType.number,
               ),
-              TextField(
-                controller: minReturnController,
+              TextFormField(
+                controller: _minReturnController,
                 decoration: InputDecoration(labelText: 'Min Return'),
                 keyboardType: TextInputType.number,
               ),
-              TextField(
-                controller: maxReturnController,
+              TextFormField(
+                controller: _maxReturnController,
                 decoration: InputDecoration(labelText: 'Max Return'),
                 keyboardType: TextInputType.number,
               ),
-              TextField(
-                controller: predictedReturnController,
+              TextFormField(
+                controller: _predictedReturnController,
                 decoration: InputDecoration(labelText: 'Predicted Return'),
                 keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a predicted return';
+                  }
+                  return null;
+                },
               ),
-              TextField(
-                controller: successMetricsController,
+              TextFormField(
+                controller: _successMetricsController,
                 decoration: InputDecoration(labelText: 'Success Metrics'),
               ),
-              TextField(
-                controller: sponsorsController,
-                decoration: InputDecoration(labelText: 'Sponsors'),
-              ),
-              TextField(
-                controller: priorityController,
+              // TextFormField(
+              //   controller: _sponsorsController,
+              //   decoration: InputDecoration(labelText: 'Sponsors (comma separated)'),
+              // ),
+              TextFormField(
+                controller: _priorityController,
                 decoration: InputDecoration(labelText: 'Priority'),
                 keyboardType: TextInputType.number,
               ),
-              SwitchListTile(
-                title: Text('Is Approved'),
-                value: isApproved,
-                onChanged: (bool value) {
-                  setState(() {
-                    isApproved = value;
-                  });
-                },
+              TextFormField(
+                controller: _isApprovedController,
+                decoration: InputDecoration(labelText: 'Is Approved (true/false)'),
               ),
               SizedBox(height: 20),
               ElevatedButton(

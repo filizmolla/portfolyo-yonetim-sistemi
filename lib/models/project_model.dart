@@ -1,77 +1,110 @@
+import 'dart:convert';import 'dart:convert';
+
 class Project {
-  final String name;
-  final String description;
-  final String projectScope;
-  final String projectManager;
-  final int criticalImportanceLevel;
-  final bool isLegalObligation;
-  final int minBudget;
-  final int maxBudget;
-  final int predictedBudget;
-  final int minDuration;
-  final int maxDuration;
-  final int predictedDuration;
-  final int projectDifficulty;
-  final int minReturn;
-  final int maxReturn;
-  final int predictedReturn;
-  final String successMetrics;
-  final List<String> sponsors;
-  final int priority;
-  final bool isApproved;
+  int id;
+  String name;
+  String description;
+  String? projectScope;
+  String? projectManager;
+  int? criticalImportanceLevel;
+  bool? isLegalObligation;
+  int? minBudget;
+  int? maxBudget;
+  int? predictedBudget;
+  int? minDuration;
+  int? maxDuration;
+  int? predictedDuration;
+  int? projectDifficulty;
+  int? minReturn;
+  int? maxReturn;
+  int? predictedReturn;
+  String? successMetrics;
+  List<String>? sponsors;
+  int? priority;
+  bool? isApproved;
 
   Project({
+    required this.id,
     required this.name,
     required this.description,
-    required this.projectScope,
-    required this.projectManager,
-    required this.criticalImportanceLevel,
-    required this.isLegalObligation,
-    required this.minBudget,
-    required this.maxBudget,
-    required this.predictedBudget,
-    required this.minDuration,
-    required this.maxDuration,
-    required this.predictedDuration,
-    required this.projectDifficulty,
-    required this.minReturn,
-    required this.maxReturn,
-    required this.predictedReturn,
-    required this.successMetrics,
-    required this.sponsors,
-    required this.priority,
-    required this.isApproved,
+    this.projectScope,
+    this.projectManager,
+    this.criticalImportanceLevel,
+    this.isLegalObligation,
+    this.minBudget,
+    this.maxBudget,
+    this.predictedBudget,
+    this.minDuration,
+    this.maxDuration,
+    this.predictedDuration,
+    this.projectDifficulty,
+    this.minReturn,
+    this.maxReturn,
+    this.predictedReturn,
+    this.successMetrics,
+    this.sponsors,
+    this.priority,
+    this.isApproved,
   });
 
-  factory Project.fromJson(Map<String, dynamic> json) {
+  factory Project.fromJson(Map<String, dynamic>? json) {
     return Project(
-      name: json['name'] ?? '',
-      description: json['description'] ?? '',
-      projectScope: json['projectScope'] ?? '',
-      projectManager: json['projectManager'] ?? '',
-      criticalImportanceLevel: json['criticalImportanceLevel'] ?? 0,
-      isLegalObligation: json['isLegalObligation'] ?? false,
-      minBudget: json['minBudget'] ?? 0,
-      maxBudget: json['maxBudget'] ?? 0,
-      predictedBudget: json['predictedBudget'] ?? 0,
-      minDuration: json['minDuration'] ?? 0,
-      maxDuration: json['maxDuration'] ?? 0,
-      predictedDuration: json['predictedDuration'] ?? 0,
-      projectDifficulty: json['projectDifficulty'] ?? 0,
-      minReturn: json['minReturn'] ?? 0,
-      maxReturn: json['maxReturn'] ?? 0,
-      predictedReturn: json['predictedReturn'] ?? 0,
-      successMetrics: json['successMetrics'] ?? '',
-      sponsors: List<String>.from(json['sponsors'] ?? []),
-      priority: json['priority'] ?? 0,
-      isApproved: json['isApproved'] ?? false,
+      id: json?['id'] ?? 0,
+      name: json?['name'] ?? '',
+      description: json?['description'] ?? '',
+      projectScope: json?['projectScope'],
+      projectManager: json?['projectManager'],
+      criticalImportanceLevel: json?['criticalImportanceLevel'],
+      isLegalObligation: json?['isLegalObligation'],
+      minBudget: json?['minBudget'],
+      maxBudget: json?['maxBudget'],
+      predictedBudget: json?['predictedBudget'],
+      minDuration: json?['minDuration'],
+      maxDuration: json?['maxDuration'],
+      predictedDuration: json?['predictedDuration'],
+      projectDifficulty: json?['projectDifficulty'],
+      minReturn: json?['minReturn'],
+      maxReturn: json?['maxReturn'],
+      predictedReturn: json?['predictedReturn'],
+      successMetrics: json?['successMetrics'],
+      //sponsors: json?['sponsors'] != null ? List<String>.from(json['sponsors']) : null,
+      priority: json?['priority'],
+      isApproved: json?['isApproved'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'description': description,
+      'projectScope': projectScope,
+      'projectManager': projectManager,
+      'criticalImportanceLevel': criticalImportanceLevel,
+      'isLegalObligation': isLegalObligation,
+      'minBudget': minBudget,
+      'maxBudget': maxBudget,
+      'predictedBudget': predictedBudget,
+      'minDuration': minDuration,
+      'maxDuration': maxDuration,
+      'predictedDuration': predictedDuration,
+      'projectDifficulty': projectDifficulty,
+      'minReturn': minReturn,
+      'maxReturn': maxReturn,
+      'predictedReturn': predictedReturn,
+      'successMetrics': successMetrics,
+      //'sponsors': sponsors,
+      'priority': priority,
+      'isApproved': isApproved,
+    };
   }
 }
 
 
 List<Project> mockProjects = [
-  Project(
+  Project
+    (
+    id:1,
     //add mock data with fields
     name: "Project A",
     description: "Description of Project A",
