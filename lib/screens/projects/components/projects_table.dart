@@ -52,9 +52,7 @@ class ProjectsTable extends StatelessWidget {
                   DataColumn(
                     label: Text("PReturn"),
                   ),
-                  DataColumn(
-                    label: Text("Operation"),
-                  ),
+
                 ],
                 rows: List.generate(
                   mockProjects.length,
@@ -78,81 +76,6 @@ DataRow projectDataRow(Project projectInfo, BuildContext context){
       DataCell(Text(projectInfo.predictedBudget.toString())),
       DataCell(Text(projectInfo.predictedDuration.toString())),
       DataCell(Text(projectInfo.predictedReturn.toString())),
-      DataCell(
-        Row(
-          children: [
-            TextButton(
-              child: Text('Edit', style: TextStyle(color: greenColor)),
-              onPressed: () {},
-            ),
-            SizedBox(
-              width: 6,
-            ),
-            TextButton(
-              child: Text("Delete", style: TextStyle(color: Colors.redAccent)),
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (_) {
-                      return AlertDialog(
-                          title: Center(
-                            child: Column(
-                              children: [
-                                Icon(Icons.warning_outlined,
-                                    size: 36, color: Colors.red),
-                                SizedBox(height: 20),
-                                Text("Confirm Deletion"),
-                              ],
-                            ),
-                          ),
-                          content: Container(
-                            color: secondaryColor,
-                            height: 70,
-                            child: Column(
-                              children: [
-                                Text(
-                                    "Are you sure want to delete '${projectInfo.name}'?"),
-                                SizedBox(
-                                  height: 16,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ElevatedButton.icon(
-                                        icon: Icon(
-                                          Icons.close,
-                                          size: 14,
-                                        ),
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.grey),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        label: Text("Cancel")),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    ElevatedButton.icon(
-                                        icon: Icon(
-                                          Icons.delete,
-                                          size: 14,
-                                        ),
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.red),
-                                        onPressed: () {},
-                                        label: Text("Delete"))
-                                  ],
-                                )
-                              ],
-                            ),
-                          ));
-                    });
-              },
-              // Delete
-            ),
-          ],
-        ),
-      ),
     ]
 
   );

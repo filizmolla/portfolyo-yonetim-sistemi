@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/core/constants/color_constants.dart';
 import 'package:untitled/models/project_model.dart';
 import 'package:untitled/services/api_service.dart';
+import 'package:untitled/screens/projects/edit_project_screen.dart';
 
 class ProjectDemandsTable extends StatefulWidget {
   const ProjectDemandsTable({Key? key}) : super(key: key);
@@ -88,8 +89,15 @@ class ProjectDemandsTableState extends State<ProjectDemandsTable> {
           Row(
             children: [
               TextButton(
-                child: Text('View', style: TextStyle(color: greenColor)),
-                onPressed: () {},
+                child: Text('Edit', style: TextStyle(color: greenColor)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditProjectScreen(project: projectInfo),
+                    ),
+                  );
+                },
               ),
               SizedBox(width: 6),
               TextButton(
