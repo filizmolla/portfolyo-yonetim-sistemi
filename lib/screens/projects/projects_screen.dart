@@ -1,16 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:untitled/core/constants/color_constants.dart';
 import 'package:untitled/responsive.dart';
-
-import 'package:untitled/screens/dashboard/components/mini_information_card.dart';
-
-import 'package:untitled/screens/dashboard/components/recent_forums.dart';
-import 'package:untitled/screens/dashboard/components/recent_users.dart';
 import 'package:untitled/screens/dashboard/components/user_details_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/screens/projects/components/accepted_projects_table.dart';
-
 import '../dashboard/components/header.dart';
+import '../forms/input_form.dart';
 
 class ProjectsScreen extends StatelessWidget {
   @override
@@ -25,14 +20,69 @@ class ProjectsScreen extends StatelessWidget {
               Header(),
               SizedBox(height: defaultPadding),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  SizedBox(
+                    width: 10,
+                  ),
+                  ElevatedButton.icon(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: defaultPadding * 1.5,
+                        vertical:
+                        defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+                      ),
+                    ),
+                    onPressed: () {
+                      //TODO: yeni proje ekleme
+                      Navigator.of(context).push(new MaterialPageRoute<Null>(
+                          builder: (BuildContext context) {
+                            return new FormMaterial();
+                          },
+                          fullscreenDialog: true));
+                    },
+                    icon: Icon(Icons.add),
+                    label: Text(
+                      "Add New",
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  ElevatedButton.icon(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: defaultPadding * 1.5,
+                        vertical:
+                        defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+                      ),
+                    ),
+                    onPressed: () {
+                      //TODO: brute_force hesaplamaları
+
+                    },
+                    icon: Icon(Icons.calculate),
+                    label: Text(
+                      "Calculate",
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: defaultPadding),
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   Expanded(
                     flex: 5,
                     child: Column(
                       children: [
                         //MyFiels(),
                         //SizedBox(height: defaultPadding),
+
                         AcceptedProjectsTable(),
                         SizedBox(height: defaultPadding),
                         if (Responsive.isMobile(context))
