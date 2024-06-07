@@ -4,7 +4,6 @@ import 'package:untitled/core/utils/colorful_tag.dart';
 import 'package:untitled/models/recent_user_model.dart';
 import 'package:colorize_text_avatar/colorize_text_avatar.dart';
 import 'package:flutter/material.dart';
-
 import '../../../models/project_model.dart';
 
 class ProjectsTable extends StatelessWidget {
@@ -36,22 +35,22 @@ class ProjectsTable extends StatelessWidget {
                 columnSpacing: defaultPadding,
                 columns: [
                   DataColumn(
-                    label: Text("Project Name"),
+                    label: Text("Name"),
                   ),
                   DataColumn(
                     label: Text("Description"),
                   ),
                   DataColumn(
-                    label: Text("Is Legal Obligation"),
+                    label: Text("Is Legal"),
                   ),
                   DataColumn(
-                    label: Text("Predicted Budget"),
+                    label: Text("PBudget"),
                   ),
                   DataColumn(
-                    label: Text("Predicted Duration"),
+                    label: Text("PDuration"),
                   ),
                   DataColumn(
-                    label: Text("Predicted Return"),
+                    label: Text("PReturn"),
                   ),
                   DataColumn(
                     label: Text("Operation"),
@@ -83,7 +82,7 @@ DataRow projectDataRow(Project projectInfo, BuildContext context){
         Row(
           children: [
             TextButton(
-              child: Text('View', style: TextStyle(color: greenColor)),
+              child: Text('Edit', style: TextStyle(color: greenColor)),
               onPressed: () {},
             ),
             SizedBox(

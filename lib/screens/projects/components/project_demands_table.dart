@@ -3,14 +3,14 @@ import 'package:untitled/core/constants/color_constants.dart';
 import 'package:untitled/models/project_model.dart';
 import 'package:untitled/services/api_service.dart';
 
-class AcceptedProjectsTable extends StatefulWidget {
-  const AcceptedProjectsTable({Key? key}) : super(key: key);
+class ProjectDemandsTable extends StatefulWidget {
+  const ProjectDemandsTable({Key? key}) : super(key: key);
 
   @override
-  AcceptedProjectsTableState createState() => AcceptedProjectsTableState();
+  ProjectDemandsTableState createState() => ProjectDemandsTableState();
 }
 
-class AcceptedProjectsTableState extends State<AcceptedProjectsTable> {
+class ProjectDemandsTableState extends State<ProjectDemandsTable> {
   late Future<List<Project>> futureProjects;
   final ApiService apiService = ApiService(baseUrl: 'http://localhost:8000');
 
