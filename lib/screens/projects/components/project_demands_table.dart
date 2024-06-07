@@ -104,7 +104,6 @@ class ProjectDemandsTableState extends State<ProjectDemandsTable> {
               TextButton(
                 child: Text("Delete", style: TextStyle(color: Colors.redAccent)),
                 onPressed: () async {
-                  //TODO: Delete the project!
                   try {
                     await apiService.deleteProject(projectInfo.id);
                     setState(() {
