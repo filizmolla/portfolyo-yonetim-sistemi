@@ -140,7 +140,7 @@ def get_brute_force_predicted_results( duration: int, budget:int, case: str, cus
     if case not in ["predicted", "worst", "best"]:
         raise HTTPException(status_code=404, detail="Case should be one of the following: predicted, worst, best")
     # case = "predicted"
-    projects = db.query(models.Project).all()
+    projects = db.query(models.Project).where(models.Project.isLegalObligation == False).all()
     roles_data = db.query(models.Role).all()
     requirements = db.query(models.Requirement).all()
     strategies = db.query(models.Strategy).all()
@@ -236,12 +236,21 @@ def get_brute_force_predicted_results( duration: int, budget:int, case: str, cus
         duration_label= "minDuration"
         return_label = "maxReturn"
 
+    # get selected project ids
+    selected_project_ids = [project['id'] for project in project_baskets[0]]
+    print(selected_project_ids)
+    # selected projects isappoved field update
+    db.query(models.Project).filter(models.Project.id.in_(selected_project_ids)).update({models.Project.isApproved: True}, synchronize_session=False)
+    db.commit()
+
 
     project_basket_summary["all_info"] = project_baskets[0]
     project_basket_summary["project_names"] = [project['name'] for project in project_baskets[0]]
     project_basket_summary["total_budget"] = sum(project[budget_label] for project in project_baskets[0])
     project_basket_summary["total_return"] = sum(project[return_label] for project in project_baskets[0])
     project_basket_summary["total_profit"] = sum(project[return_label] for project in project_baskets[0]) - sum(project[budget_label] for project in project_baskets[0])
+
+
 
     print(project_basket_summary["project_names"])
     print(project_basket_summary["total_budget"])

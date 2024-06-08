@@ -113,62 +113,6 @@ class ProjectDemandsTableState extends State<ProjectDemandsTable> {
                     print('Error deleting project: $e');
                     // Handle error
                   }
-
-
-
-                  // showDialog(
-                  //   context: context,
-                  //   builder: (_) {
-                  //     return AlertDialog(
-                  //       title: Center(
-                  //         child: Column(
-                  //           children: [
-                  //             Icon(Icons.warning_outlined,
-                  //                 size: 36, color: Colors.red),
-                  //             SizedBox(height: 20),
-                  //             Text("Confirm Deletion"),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //       content: Container(
-                  //         color: secondaryColor,
-                  //         height: 70,
-                  //         child: Column(
-                  //           children: [
-                  //             Text("Are you sure want to delete '${projectInfo.name}'?"),
-                  //             SizedBox(height: 16),
-                  //             Row(
-                  //               mainAxisAlignment: MainAxisAlignment.center,
-                  //               children: [
-                  //                 ElevatedButton.icon(
-                  //                   icon: Icon(Icons.close, size: 14),
-                  //                   style: ElevatedButton.styleFrom(
-                  //                     backgroundColor: Colors.grey,
-                  //                   ),
-                  //                   onPressed: () {
-                  //                     Navigator.of(context).pop();
-                  //                   },
-                  //                   label: Text("Cancel"),
-                  //                 ),
-                  //                 SizedBox(width: 20),
-                  //                 ElevatedButton.icon(
-                  //                   icon: Icon(Icons.delete, size: 14),
-                  //                   style: ElevatedButton.styleFrom(
-                  //                     backgroundColor: Colors.red,
-                  //                   ),
-                  //                   onPressed: () {
-                  //                     // Add delete functionality here
-                  //                   },
-                  //                   label: Text("Delete"),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     );
-                  //   },
-                  // );
                 },
               ),
             ],

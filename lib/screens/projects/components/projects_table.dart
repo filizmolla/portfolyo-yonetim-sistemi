@@ -1,15 +1,25 @@
-import 'package:untitled/core/constants/color_constants.dart';
-import 'package:untitled/core/constants/routes.dart';
-import 'package:untitled/core/utils/colorful_tag.dart';
-import 'package:untitled/models/recent_user_model.dart';
-import 'package:colorize_text_avatar/colorize_text_avatar.dart';
 import 'package:flutter/material.dart';
-import '../../../models/project_model.dart';
+import 'package:untitled/core/constants/color_constants.dart';
+import 'package:untitled/models/project_model.dart';
+import 'package:untitled/services/api_service.dart';
+import 'package:untitled/screens/projects/edit_project_screen.dart';
 
-class ProjectsTable extends StatelessWidget {
-  const ProjectsTable({
-    Key? key,
-  }) : super(key: key);
+class ProjectsTable extends StatefulWidget {
+  const ProjectsTable({Key? key}) : super(key: key);
+
+  @override
+  ProjectsTableState createState() => ProjectsTableState();
+}
+
+class ProjectsTableState extends State<ProjectsTable> {
+  late Future<List<Project>> futureProjects;
+  final ApiService apiService = ApiService(baseUrl: 'http://localhost:8000');
+
+  @override
+  void initState() {
+    super.initState();
+    futureProjects = apiService.fetchApprovedProjects();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,58 +36,55 @@ class ProjectsTable extends StatelessWidget {
             "Projects Table",
             style: Theme.of(context).textTheme.subtitle1,
           ),
-          SingleChildScrollView(
-            //scrollDirection: Axis.horizontal,
-            child: SizedBox(
-              width: double.infinity,
-              child: DataTable(
-                horizontalMargin: 0,
-                columnSpacing: defaultPadding,
-                columns: [
-                  DataColumn(
-                    label: Text("Name"),
+          FutureBuilder<List<Project>>(
+            future: futureProjects,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text("Error: ${snapshot.error}");
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return Text("No projects available");
+              } else {
+                return SingleChildScrollView(
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: DataTable(
+                      horizontalMargin: 0,
+                      columnSpacing: defaultPadding,
+                      columns: [
+                        DataColumn(label: Text("Project Name")),
+                        DataColumn(label: Text("Description")),
+                        DataColumn(label: Text("Is Legal Obligation")),
+                        DataColumn(label: Text("Predicted Budget")),
+                        DataColumn(label: Text("Predicted Duration")),
+                        DataColumn(label: Text("Predicted Return")),
+                      ],
+                      rows: List.generate(
+                        snapshot.data!.length,
+                            (index) => projectDataRow(snapshot.data![index], context),
+                      ),
+                    ),
                   ),
-                  DataColumn(
-                    label: Text("Description"),
-                  ),
-                  DataColumn(
-                    label: Text("Is Legal"),
-                  ),
-                  DataColumn(
-                    label: Text("PBudget"),
-                  ),
-                  DataColumn(
-                    label: Text("PDuration"),
-                  ),
-                  DataColumn(
-                    label: Text("PReturn"),
-                  ),
-
-                ],
-                rows: List.generate(
-                  mockProjects.length,
-                      (index) => projectDataRow(mockProjects[index], context),
-                ),
-              ),
-            ),
+                );
+              }
+            },
           ),
         ],
       ),
     );
   }
+
+  DataRow projectDataRow(Project projectInfo, BuildContext context) {
+    return DataRow(
+      cells: [
+        DataCell(Text(projectInfo.name)),
+        DataCell(Text(projectInfo.description)),
+        DataCell(Text(projectInfo.isLegalObligation.toString())),
+        DataCell(Text(projectInfo.predictedBudget.toString())),
+        DataCell(Text(projectInfo.predictedDuration.toString())),
+        DataCell(Text(projectInfo.predictedReturn.toString())),
+      ],
+    );
+  }
 }
-
-DataRow projectDataRow(Project projectInfo, BuildContext context){
-  return DataRow(
-    cells:[
-      DataCell(Text(projectInfo.name!)),
-      DataCell(Text(projectInfo.description!)),
-      DataCell(Text(projectInfo.isLegalObligation.toString())),
-      DataCell(Text(projectInfo.predictedBudget.toString())),
-      DataCell(Text(projectInfo.predictedDuration.toString())),
-      DataCell(Text(projectInfo.predictedReturn.toString())),
-    ]
-
-  );
-}
-

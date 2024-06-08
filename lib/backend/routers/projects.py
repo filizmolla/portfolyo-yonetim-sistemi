@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
-from .. import models, schemas, database
+from lib.backend import models, schemas, database
 
 router = APIRouter(
     prefix="/projects",
@@ -21,6 +21,13 @@ def create_project(project: schemas.ProjectCreate, db: Session = Depends(databas
 def read_projects( db: Session = Depends(database.get_db)):
     projects = db.query(models.Project)
     return projects
+
+@router.get("/approved_projects", response_model=List[schemas.Project])
+def read_approved_projects( db: Session = Depends(database.get_db)):
+    projects = db.query(models.Project).filter(models.Project.isApproved == True).all()
+    return projects
+
+
 
 @router.get("/{project_id}", response_model=schemas.Project)
 def read_project(project_id: int, db: Session = Depends(database.get_db)):

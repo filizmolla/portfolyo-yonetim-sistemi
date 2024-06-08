@@ -4,6 +4,7 @@ import 'package:untitled/responsive.dart';
 import 'package:untitled/screens/dashboard/components/user_details_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/screens/projects/add_project_screen.dart';
+import 'package:untitled/screens/projects/calculate_demands_screen.dart';
 import 'package:untitled/screens/projects/components/project_demands_table.dart';
 import '../dashboard/components/header.dart';
 import '../forms/input_form.dart';
@@ -70,8 +71,12 @@ class ProjectDemandsScreen extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      //TODO: brute_force hesaplamaları
-
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CalculateDemandsScreen(),
+                        ),
+                      );
                     },
                     icon: Icon(Icons.calculate),
                     label: Text(
@@ -112,5 +117,4 @@ class ProjectDemandsScreen extends StatelessWidget {
     );
   }
 }
-
 
