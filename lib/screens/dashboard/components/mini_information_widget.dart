@@ -41,14 +41,14 @@ class _MiniInformationWidgetState extends State<MiniInformationWidget> {
                   color: widget.dailyData.color!.withOpacity(0.1),
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),
-                child: Text("Budget")
+                child: Text("Budget"),
               ),
               Padding(
                 padding: EdgeInsets.only(right: 12.0),
                 child: DropdownButton(
                   icon: Icon(Icons.more_vert, size: 18),
                   underline: SizedBox(),
-                  style: Theme.of(context).textTheme.button,
+                  style: Theme.of(context).textTheme.labelLarge,
                   value: _value,
                   items: [
                     DropdownMenuItem(
@@ -66,37 +66,24 @@ class _MiniInformationWidgetState extends State<MiniInformationWidget> {
                   ],
                   onChanged: (int? value) {
                     setState(() {
-                      _value = value!; // Assign the value to the selected value
+                      _value = value!;
                     });
                   },
                 ),
               ),
             ],
           ),
-
           SizedBox(
             height: 8,
           ),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "${widget.dailyData.volumeData}",
-                style: Theme.of(context)
-                    .textTheme
-                    .caption!
-                    .copyWith(color: Colors.white70),
+          Center(
+            child: Text(
+              "${widget.dailyData.volumeData}",
+              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                color: Colors.white,
               ),
-              Text(
-                widget.dailyData.totalStorage!,
-                style: Theme.of(context)
-                    .textTheme
-                    .caption!
-                    .copyWith(color: Colors.white),
-              ),
-            ],
-          )
+            ),
+          ),
         ],
       ),
     );
@@ -142,5 +129,3 @@ class LineChartWidget extends StatelessWidget {
     );
   }
 }
-
-
