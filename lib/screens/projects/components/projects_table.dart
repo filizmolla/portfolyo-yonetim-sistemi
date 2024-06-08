@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:untitled/core/constants/color_constants.dart';
 import 'package:untitled/models/project_model.dart';
 import 'package:untitled/services/api_service.dart';
-import 'package:untitled/screens/projects/edit_project_screen.dart';
 
 class ProjectsTable extends StatefulWidget {
   const ProjectsTable({Key? key}) : super(key: key);
@@ -34,7 +33,7 @@ class ProjectsTableState extends State<ProjectsTable> {
         children: [
           Text(
             "Projects Table",
-            style: Theme.of(context).textTheme.subtitle1,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           FutureBuilder<List<Project>>(
             future: futureProjects,
@@ -59,6 +58,7 @@ class ProjectsTableState extends State<ProjectsTable> {
                         DataColumn(label: Text("Predicted Budget")),
                         DataColumn(label: Text("Predicted Duration")),
                         DataColumn(label: Text("Predicted Return")),
+                      //  DataColumn(labrl: Text("Is Approved"))
                       ],
                       rows: List.generate(
                         snapshot.data!.length,
@@ -84,6 +84,7 @@ class ProjectsTableState extends State<ProjectsTable> {
         DataCell(Text(projectInfo.predictedBudget.toString())),
         DataCell(Text(projectInfo.predictedDuration.toString())),
         DataCell(Text(projectInfo.predictedReturn.toString())),
+//        DataCell(Text(projectInfo.isApproved.toString()))
       ],
     );
   }

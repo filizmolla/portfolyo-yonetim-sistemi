@@ -140,7 +140,7 @@ def get_brute_force_predicted_results( duration: int, budget:int, case: str, cus
     if case not in ["predicted", "worst", "best"]:
         raise HTTPException(status_code=404, detail="Case should be one of the following: predicted, worst, best")
     # case = "predicted"
-    projects = db.query(models.Project).where(models.Project.isLegalObligation == False).all()
+    projects = db.query(models.Project).filter(models.Project.isApproved == False).all()
     roles_data = db.query(models.Role).all()
     requirements = db.query(models.Requirement).all()
     strategies = db.query(models.Strategy).all()
