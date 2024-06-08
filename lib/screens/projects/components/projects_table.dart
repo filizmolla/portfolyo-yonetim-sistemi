@@ -58,7 +58,8 @@ class ProjectsTableState extends State<ProjectsTable> {
                         DataColumn(label: Text("Predicted Budget")),
                         DataColumn(label: Text("Predicted Duration")),
                         DataColumn(label: Text("Predicted Return")),
-                      //  DataColumn(labrl: Text("Is Approved"))
+                        DataColumn(label: Text("Reject Project"))
+
                       ],
                       rows: List.generate(
                         snapshot.data!.length,
@@ -84,6 +85,27 @@ class ProjectsTableState extends State<ProjectsTable> {
         DataCell(Text(projectInfo.predictedBudget.toString())),
         DataCell(Text(projectInfo.predictedDuration.toString())),
         DataCell(Text(projectInfo.predictedReturn.toString())),
+        DataCell(
+          Row(
+            children: [
+              TextButton(
+                child: Text("Reject", style: TextStyle(color: Colors.redAccent)),
+                onPressed: () async {
+                  try {
+                    projectInfo.isApproved = false;
+                    await apiService.updateProject(projectInfo.id, projectInfo);
+                    setState(() {
+                      futureProjects = apiService.fetchApprovedProjects();
+                    });
+                  } catch (e) {
+                    print('Error updating project: $e');
+                    // Handle error
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
 //        DataCell(Text(projectInfo.isApproved.toString()))
       ],
     );

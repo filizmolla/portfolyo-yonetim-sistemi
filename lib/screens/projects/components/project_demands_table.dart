@@ -19,7 +19,7 @@ class ProjectDemandsTableState extends State<ProjectDemandsTable> {
   @override
   void initState() {
     super.initState();
-    futureProjects = apiService.fetchProjects();
+    futureProjects = apiService.fetchNonApprovedProjects();
   }
 
   @override
@@ -107,7 +107,7 @@ class ProjectDemandsTableState extends State<ProjectDemandsTable> {
                   try {
                     await apiService.deleteProject(projectInfo.id);
                     setState(() {
-                      futureProjects = apiService.fetchProjects();
+                      futureProjects = apiService.fetchNonApprovedProjects();
                     });
                   } catch (e) {
                     print('Error deleting project: $e');

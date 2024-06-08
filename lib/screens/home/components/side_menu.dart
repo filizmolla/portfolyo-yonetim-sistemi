@@ -40,7 +40,7 @@ class SideMenu extends StatelessWidget {
                   ],
                 )),
             DrawerListTile(
-              title: "Dashboard",
+              title: "Projects",
               svgSrc: "assets/icons/menu_dashbord.svg",
               press: () {
                 SideMenuController.instance.changeActiveItemTo(dashboard);
@@ -49,7 +49,7 @@ class SideMenu extends StatelessWidget {
               },
             ),
             DrawerListTile(
-              title: "Projects",
+              title: "Project Demands",
               svgSrc: "assets/icons/menu_tran.svg",
               press: () {
                 SideMenuController.instance.changeActiveItemTo(projects);
