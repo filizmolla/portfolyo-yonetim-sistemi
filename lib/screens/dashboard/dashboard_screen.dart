@@ -25,7 +25,7 @@ class DashboardScreen extends StatelessWidget {
             children: [
               Header(),
               SizedBox(height: defaultPadding),
-              MiniInformation(), //Bunu kaldirdigimda bilgi kartlari gitti!!!
+             // MiniInformation(), //Bunu kaldirdigimda bilgi kartlari gitti!!!
               SizedBox(height: defaultPadding),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

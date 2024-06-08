@@ -30,7 +30,7 @@ class Header extends StatelessWidget {
                 height: 8,
               ),
               Text(
-                "Wellcome to your dashboard",
+                "Welcome to your dashboard",
                 style: Theme.of(context).textTheme.subtitle2,
               ),
             ],
@@ -71,7 +71,7 @@ class ProfileCard extends StatelessWidget {
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-              child: Text("Deniz Çolak"),
+              child: Text("Deniz"),
             ),
           Icon(Icons.keyboard_arrow_down),
         ],

@@ -44,7 +44,9 @@ class _CalculateDemandsScreenState extends State<CalculateDemandsScreen> {
 
       if (response != null) {
         setState(() {
+
           _apiResponse = response;
+          //print(response);
         });
       }
     }
@@ -67,7 +69,13 @@ class _CalculateDemandsScreenState extends State<CalculateDemandsScreen> {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        return data;
+        final projectNames = data[1]['project_names'].join(', ');
+        final totalBudget = data[1]['total_budget'];
+        final totalReturn = data[1]['total_return'];
+        final totalProfit = data[1]['total_profit'];
+        final data_show = [projectNames, totalBudget, totalReturn, totalProfit];
+
+        return data_show;
       } else {
         print('Failed to fetch prediction results. Status code: ${response.statusCode}');
         print('Response body: ${response.body}');
@@ -177,6 +185,7 @@ class _CalculateDemandsScreenState extends State<CalculateDemandsScreen> {
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     //TODO: Display the results in a more readable format
+
                     ..._apiResponse.map((result) => Text(result.toString())).toList(),
                   ],
                 ),
