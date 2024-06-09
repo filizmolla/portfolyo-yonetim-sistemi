@@ -112,6 +112,7 @@ class ApiService {
         }
       };
 
+
       print('Update Project JSON: ${jsonEncode(projectJson)}');
 
       final response = await http.put(
@@ -119,6 +120,7 @@ class ApiService {
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(projectJson),
       );
+
 
       if (response.statusCode == 200) {
         print('Project updated successfully');

@@ -92,7 +92,12 @@ class ProjectsTableState extends State<ProjectsTable> {
                 child: Text("Reject", style: TextStyle(color: Colors.redAccent)),
                 onPressed: () async {
                   try {
+
+                    print("isApproveddan once");
+                    print(projectInfo.toJson());
                     projectInfo.isApproved = false;
+                    print("isApprove sonrasi");
+                    print(projectInfo.toJson());
                     await apiService.updateProject(projectInfo.id!, projectInfo);
                     setState(() {
                       futureProjects = apiService.fetchApprovedProjects();

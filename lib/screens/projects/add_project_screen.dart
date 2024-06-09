@@ -145,7 +145,7 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
       strategies.add(strategy);
 
       Project newProject = Project(
-        id: newId,
+
         name: _nameController.text,
         description: _descriptionController.text,
         projectScope: _projectScopeController.text,
@@ -350,17 +350,17 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
               ),
               TextFormField(
                 controller: _customerSatisfactionController,
-                decoration: InputDecoration(labelText: 'Customer Satisfaction (0/1)'),
+                decoration: InputDecoration(labelText: 'Customer Satisfaction (0/10)'),
                 keyboardType: TextInputType.number,
               ),
               TextFormField(
                 controller: _futureGoalsController,
-                decoration: InputDecoration(labelText: 'Future Goals (0/1)'),
+                decoration: InputDecoration(labelText: 'Future Goals (0/10)'),
                 keyboardType: TextInputType.number,
               ),
               TextFormField(
                 controller: _employeeSatisfactionController,
-                decoration: InputDecoration(labelText: 'Employee Satisfaction (0/1)'),
+                decoration: InputDecoration(labelText: 'Employee Satisfaction (0/10)'),
                 keyboardType: TextInputType.number,
               ),
 

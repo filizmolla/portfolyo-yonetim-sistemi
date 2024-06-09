@@ -34,7 +34,7 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
   late TextEditingController _predictedReturnController;
   late TextEditingController _successMetricsController;
 
-  //late TextEditingController _sponsorsController;
+  late TextEditingController _sponsorsController;
   late TextEditingController _priorityController;
   late TextEditingController _isApprovedController;
   late TextEditingController _customerSatisfactionController;
@@ -87,7 +87,7 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
         TextEditingController(text: widget.project.predictedReturn.toString());
     _successMetricsController =
         TextEditingController(text: widget.project.successMetrics);
-    //_sponsorsController = TextEditingController(text: widget.project.sponsors.join(', '));
+    _sponsorsController = TextEditingController(text: widget.project.sponsors?.join(', '));
     _priorityController =
         TextEditingController(text: widget.project.priority.toString());
     _isApprovedController =
@@ -139,7 +139,7 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
     _maxReturnController.dispose();
     _predictedReturnController.dispose();
     _successMetricsController.dispose();
-    //_sponsorsController.dispose();
+    _sponsorsController.dispose();
     _priorityController.dispose();
     _isApprovedController.dispose();
 
@@ -202,9 +202,9 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
           maxReturn: int.parse(_maxReturnController.text),
           predictedReturn: int.parse(_predictedReturnController.text),
           successMetrics: _successMetricsController.text,
-          //sponsors: _sponsorsController.text.split(',').map((e) => e.trim()).toList(),
+          sponsors: _sponsorsController.text.split(',').map((e) => e.trim()).toList(),
           //handle null values
-          priority: int.parse(_priorityController.text) ?? 0,
+         // priority: int.parse(_priorityController.text) ?? 0,
           isApproved: _isApprovedController.text.toLowerCase() == 'true',
           strategies: strategies,
           requirements: requirements
@@ -338,11 +338,11 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
                 controller: _successMetricsController,
                 decoration: InputDecoration(labelText: 'Success Metrics'),
               ),
-              TextFormField(
-                controller: _priorityController,
-                decoration: InputDecoration(labelText: 'Priority'),
-                keyboardType: TextInputType.number,
-              ),
+              // TextFormField(
+              //   controller: _priorityController,
+              //   decoration: InputDecoration(labelText: 'Priority'),
+              //   keyboardType: TextInputType.number,
+              // ),
               TextFormField(
                 controller: _isApprovedController,
                 decoration: InputDecoration(

@@ -1,3 +1,5 @@
+import 'dart:js';
+
 class Project {
   String? name;
   String? description;
@@ -16,7 +18,7 @@ class Project {
   int? maxReturn;
   int? predictedReturn;
   String? successMetrics;
-  String? sponsors;
+  List<String>? sponsors;
   int? priority;
   bool? isApproved;
   int? id;
@@ -66,7 +68,9 @@ class Project {
     maxReturn = json['maxReturn'];
     predictedReturn = json['predictedReturn'];
     successMetrics = json['successMetrics'];
-    sponsors = json['sponsors'] is List ? json['sponsors'].join(', ') : json['sponsors']; // Adjusting sponsors field
+    if (json['sponsors'] != null) {
+      sponsors = List<String>.from(json['sponsors']);
+    }
     priority = json['priority'];
     isApproved = json['isApproved'];
     id = json['id'];
@@ -104,7 +108,9 @@ class Project {
     data['maxReturn'] = this.maxReturn;
     data['predictedReturn'] = this.predictedReturn;
     data['successMetrics'] = this.successMetrics;
-    data['sponsors'] = this.sponsors;
+    if (sponsors != null) {
+      data['sponsors'] = sponsors!;
+    }
     data['priority'] = this.priority;
     data['isApproved'] = this.isApproved;
     data['id'] = this.id;
@@ -122,22 +128,18 @@ class Strategies {
   int? customerSatisfaction;
   int? futureGoals;
   int? employeeSatisfaction;
-  int? id;
-  int? projectId;
+
 
   Strategies(
       {this.customerSatisfaction,
       this.futureGoals,
       this.employeeSatisfaction,
-      this.id,
-      this.projectId});
+});
 
   Strategies.fromJson(Map<String, dynamic> json) {
     customerSatisfaction = json['customer_satisfaction'];
     futureGoals = json['future_goals'];
     employeeSatisfaction = json['employee_satisfaction'];
-    id = json['id'];
-    projectId = json['project_id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -145,8 +147,6 @@ class Strategies {
     data['customer_satisfaction'] = this.customerSatisfaction;
     data['future_goals'] = this.futureGoals;
     data['employee_satisfaction'] = this.employeeSatisfaction;
-    data['id'] = this.id;
-    data['project_id'] = this.projectId;
     return data;
   }
 }
@@ -158,8 +158,6 @@ class Requirements {
   int? qualityAssuranceTester;
   int? devops;
   int? databaseDeveloper;
-  int? id;
-  int? projectId;
 
   Requirements(
       {this.backendDeveloper,
@@ -168,8 +166,7 @@ class Requirements {
       this.qualityAssuranceTester,
       this.devops,
       this.databaseDeveloper,
-      this.id,
-      this.projectId});
+      });
 
   Requirements.fromJson(Map<String, dynamic> json) {
     backendDeveloper = json['backend_developer'];
@@ -178,8 +175,6 @@ class Requirements {
     qualityAssuranceTester = json['quality_assurance_tester'];
     devops = json['devops'];
     databaseDeveloper = json['database_developer'];
-    id = json['id'];
-    projectId = json['project_id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -190,8 +185,6 @@ class Requirements {
     data['quality_assurance_tester'] = this.qualityAssuranceTester;
     data['devops'] = this.devops;
     data['database_developer'] = this.databaseDeveloper;
-    data['id'] = this.id;
-    data['project_id'] = this.projectId;
     return data;
   }
 }
