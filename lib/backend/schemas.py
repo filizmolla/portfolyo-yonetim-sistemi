@@ -1,6 +1,39 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
+class StrategyBase(BaseModel):
+    customer_satisfaction: int
+    future_goals: int
+    employee_satisfaction: int
+
+class StrategyCreate(StrategyBase):
+    pass
+
+class Strategy(StrategyBase):
+    id: int
+    project_id: int
+
+    class Config:
+        orm_mode = True
+
+class RequirementBase(BaseModel):
+    backend_developer: int
+    frontend_developer: int
+    analyst: int
+    quality_assurance_tester: int
+    devops: int
+    database_developer: int
+
+class RequirementCreate(RequirementBase):
+    pass
+
+class Requirement(RequirementBase):
+    id: int
+    project_id: int
+
+    class Config:
+        orm_mode = True
+
 class ProjectBase(BaseModel):
     name: str
     description: Optional[str] = None
@@ -23,25 +56,15 @@ class ProjectBase(BaseModel):
     priority: Optional[int] = None
     isApproved: Optional[bool] = None
 
+
 class ProjectCreate(ProjectBase):
     pass
 
 class Project(ProjectBase):
     id: int
-    class Config:
-        orm_mode = True
+    strategies: List[Strategy] = []
+    requirements: List[Requirement] = []
 
-class StrategyBase(BaseModel):
-    project_id: int
-    customer_satisfaction: int
-    future_goals: int
-    employee_satisfaction: int
-
-class StrategyCreate(StrategyBase):
-    pass
-
-class Strategy(StrategyBase):
-    id: int
     class Config:
         orm_mode = True
 
@@ -58,6 +81,7 @@ class EmployeeCreate(EmployeeBase):
 
 class Employee(EmployeeBase):
     id: int
+
     class Config:
         orm_mode = True
 
@@ -72,22 +96,6 @@ class RoleCreate(RoleBase):
 
 class Role(RoleBase):
     id: int
-    class Config:
-        orm_mode = True
 
-class RequirementBase(BaseModel):
-    project_id: int
-    backend_developer: int
-    frontend_developer: int
-    analyst: int
-    quality_assurance_tester: int
-    devops: int
-    database_developer: int
-
-class RequirementCreate(RequirementBase):
-    pass
-
-class Requirement(RequirementBase):
-    id: int
     class Config:
         orm_mode = True

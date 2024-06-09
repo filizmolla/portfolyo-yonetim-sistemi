@@ -80,8 +80,8 @@ class ProjectDemandsTableState extends State<ProjectDemandsTable> {
   DataRow projectDataRow(Project projectInfo, BuildContext context) {
     return DataRow(
       cells: [
-        DataCell(Text(projectInfo.name)),
-        DataCell(Text(projectInfo.description)),
+        DataCell(Text(projectInfo.name!)),
+        DataCell(Text(projectInfo.description!)),
         DataCell(Text(projectInfo.isLegalObligation.toString())),
         DataCell(Text(projectInfo.predictedBudget.toString())),
         DataCell(Text(projectInfo.predictedDuration.toString())),
@@ -105,7 +105,7 @@ class ProjectDemandsTableState extends State<ProjectDemandsTable> {
                 child: Text("Delete", style: TextStyle(color: Colors.redAccent)),
                 onPressed: () async {
                   try {
-                    await apiService.deleteProject(projectInfo.id);
+                    await apiService.deleteProject(projectInfo.id!);
                     setState(() {
                       futureProjects = apiService.fetchNonApprovedProjects();
                     });

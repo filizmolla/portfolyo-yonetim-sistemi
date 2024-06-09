@@ -79,8 +79,8 @@ class ProjectsTableState extends State<ProjectsTable> {
   DataRow projectDataRow(Project projectInfo, BuildContext context) {
     return DataRow(
       cells: [
-        DataCell(Text(projectInfo.name)),
-        DataCell(Text(projectInfo.description)),
+        DataCell(Text(projectInfo.name!)),
+        DataCell(Text(projectInfo.description!)),
         DataCell(Text(projectInfo.isLegalObligation.toString())),
         DataCell(Text(projectInfo.predictedBudget.toString())),
         DataCell(Text(projectInfo.predictedDuration.toString())),
@@ -93,7 +93,7 @@ class ProjectsTableState extends State<ProjectsTable> {
                 onPressed: () async {
                   try {
                     projectInfo.isApproved = false;
-                    await apiService.updateProject(projectInfo.id, projectInfo);
+                    await apiService.updateProject(projectInfo.id!, projectInfo);
                     setState(() {
                       futureProjects = apiService.fetchApprovedProjects();
                     });

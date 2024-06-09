@@ -5,6 +5,8 @@ import 'package:untitled/models/project_model.dart'; // Replace with your actual
 import 'package:untitled/services/api_service.dart'; // Replace with your actual API service import
 import 'package:uuid/uuid.dart';
 
+import '../../models/project_model.dart';
+
 class AddProjectScreen extends StatefulWidget {
   @override
   _AddProjectScreenState createState() => _AddProjectScreenState();
@@ -32,6 +34,16 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
   late TextEditingController _successMetricsController;
   late TextEditingController _priorityController;
   late TextEditingController _isApprovedController;
+  late TextEditingController _backendDeveloperController;
+  late TextEditingController _frontendDeveloperController;
+  late TextEditingController _analystController;
+  late TextEditingController _qualityAssuranceTesterController;
+  late TextEditingController _devopsController;
+  late TextEditingController _databaseDeveloperController;
+  late TextEditingController _customerSatisfactionController;
+  late TextEditingController _futureGoalsController;
+  late TextEditingController _employeeSatisfactionController;
+
 
   final ApiService apiService = ApiService(baseUrl: 'http://localhost:8000');
 
@@ -57,6 +69,15 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
     _successMetricsController = TextEditingController();
     _priorityController = TextEditingController();
     _isApprovedController = TextEditingController();
+    _backendDeveloperController = TextEditingController();
+    _frontendDeveloperController = TextEditingController();
+    _analystController = TextEditingController();
+    _qualityAssuranceTesterController = TextEditingController();
+    _devopsController = TextEditingController();
+    _databaseDeveloperController = TextEditingController();
+    _customerSatisfactionController = TextEditingController();
+    _futureGoalsController = TextEditingController();
+    _employeeSatisfactionController = TextEditingController();
   }
 
   @override
@@ -80,6 +101,16 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
     _successMetricsController.dispose();
     _priorityController.dispose();
     _isApprovedController.dispose();
+    _backendDeveloperController.dispose();
+    _frontendDeveloperController.dispose();
+    _analystController.dispose();
+    _qualityAssuranceTesterController.dispose();
+    _devopsController.dispose();
+    _databaseDeveloperController.dispose();
+    _customerSatisfactionController.dispose();
+    _futureGoalsController.dispose();
+    _employeeSatisfactionController.dispose();
+
     super.dispose();
   }
 
@@ -92,8 +123,26 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
 
   Future<void> _saveProject() async {
     if (_formKey.currentState!.validate()) {
-      //generate new id for the project
       int newId = generateRandomProjectId();
+
+      List<Requirements> requirements = [];
+      Requirements requirement = Requirements(
+        backendDeveloper:  int.tryParse(_backendDeveloperController.text) ?? 0,
+        frontendDeveloper:  int.tryParse(_frontendDeveloperController.text) ?? 0,
+        analyst: int.tryParse(_analystController.text) ?? 0,
+        qualityAssuranceTester:  int.tryParse(_qualityAssuranceTesterController.text) ?? 0,
+        devops:  int.tryParse(_devopsController.text) ?? 0,
+        databaseDeveloper:  int.tryParse(_databaseDeveloperController.text) ?? 0,
+      );
+      requirements.add(requirement);
+
+      List<Strategies> strategies = [];
+      Strategies strategy = Strategies(
+        customerSatisfaction: int.tryParse(_customerSatisfactionController.text) ?? 0,
+        futureGoals: int.tryParse(_futureGoalsController.text) ?? 0,
+        employeeSatisfaction: int.tryParse(_employeeSatisfactionController.text) ?? 0,
+      );
+      strategies.add(strategy);
 
       Project newProject = Project(
         id: newId,
@@ -116,10 +165,12 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
         successMetrics: _successMetricsController.text,
         priority: int.tryParse(_priorityController.text) ?? 0,
         isApproved: _isApprovedController.text.toLowerCase() == 'true',
+        requirements: requirements,
+        strategies: strategies,
       );
 
-      await apiService.addProject(newProject); // Adjust API call based on your service
-      Navigator.pop(context, true); // Optionally pop the screen after saving
+      await apiService.addProject(newProject);
+      Navigator.pop(context, true);
     }
   }
 
@@ -253,6 +304,66 @@ class _AddProjectScreenState extends State<AddProjectScreen> {
                 controller: _isApprovedController,
                 decoration: InputDecoration(labelText: 'Is Approved (true/false)'),
               ),
+              Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Text(
+                    'Requirements',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                  )
+              ),
+              TextFormField(
+                controller: _backendDeveloperController,
+                decoration: InputDecoration(labelText: 'Backend Developer Count'),
+                keyboardType: TextInputType.number,
+              ),
+              TextFormField(
+                controller: _frontendDeveloperController,
+                decoration: InputDecoration(labelText: 'Frontend Developer Count'),
+                keyboardType: TextInputType.number,
+              ),
+              TextFormField(
+                controller: _analystController,
+                decoration: InputDecoration(labelText: 'Analyst Count'),
+                keyboardType: TextInputType.number,
+              ),
+              TextFormField(
+                controller: _qualityAssuranceTesterController,
+                decoration: InputDecoration(labelText: 'Quality Assurance Tester Count'),
+                keyboardType: TextInputType.number,
+              ),
+              TextFormField(
+                controller: _devopsController,
+                decoration: InputDecoration(labelText: 'Devops Count'),
+                keyboardType: TextInputType.number,
+              ),
+              TextFormField(
+                controller: _databaseDeveloperController,
+                decoration: InputDecoration(labelText: 'Database Developer Count'),
+                keyboardType: TextInputType.number,
+              ),
+              Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Text(
+                    'Strategies',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                  )
+              ),
+              TextFormField(
+                controller: _customerSatisfactionController,
+                decoration: InputDecoration(labelText: 'Customer Satisfaction (0/1)'),
+                keyboardType: TextInputType.number,
+              ),
+              TextFormField(
+                controller: _futureGoalsController,
+                decoration: InputDecoration(labelText: 'Future Goals (0/1)'),
+                keyboardType: TextInputType.number,
+              ),
+              TextFormField(
+                controller: _employeeSatisfactionController,
+                decoration: InputDecoration(labelText: 'Employee Satisfaction (0/1)'),
+                keyboardType: TextInputType.number,
+              ),
+
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _saveProject,
