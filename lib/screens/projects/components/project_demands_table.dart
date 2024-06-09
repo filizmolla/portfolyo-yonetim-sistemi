@@ -90,6 +90,23 @@ class ProjectDemandsTableState extends State<ProjectDemandsTable> {
           Row(
             children: [
               TextButton(
+                child: Text('Approve', style: TextStyle(color: greenColor)),
+                onPressed: () async {
+                  try {
+
+                    projectInfo.isApproved = true;
+                    await apiService.updateProject(projectInfo.id!, projectInfo);
+                    setState(() {
+                      futureProjects = apiService.fetchNonApprovedProjects();
+                    });
+                  } catch (e) {
+                    print('Error updating project: $e');
+                    // Handle error
+                  }
+                },
+              ),
+              SizedBox(width: 6),
+              TextButton(
                 child: Text('Edit', style: TextStyle(color: greenColor)),
                 onPressed: () {
                   Navigator.push(
