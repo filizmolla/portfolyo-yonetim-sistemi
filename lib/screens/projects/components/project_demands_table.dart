@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/core/constants/color_constants.dart';
 import 'package:untitled/models/project_model.dart';
+import 'package:untitled/screens/projects/view_project_screen.dart';
 import 'package:untitled/services/api_service.dart';
 import 'package:untitled/screens/projects/edit_project_screen.dart';
 
 class ProjectDemandsTable extends StatefulWidget {
   const ProjectDemandsTable({Key? key}) : super(key: key);
-
 
   @override
   ProjectDemandsTableState createState() => ProjectDemandsTableState();
@@ -80,8 +80,24 @@ class ProjectDemandsTableState extends State<ProjectDemandsTable> {
   DataRow projectDataRow(Project projectInfo, BuildContext context) {
     return DataRow(
       cells: [
-        DataCell(Text(projectInfo.name!)),
-        DataCell(Text(projectInfo.description!)),
+        DataCell(
+          Container(
+            width: 100, // Set the maximum width for the description column
+            child: Text(
+              projectInfo.name!,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ),
+        DataCell(
+          Container(
+            width: 100, // Set the maximum width for the description column
+            child: Text(
+              projectInfo.description!,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ),
         DataCell(Text(projectInfo.isLegalObligation.toString())),
         DataCell(Text(projectInfo.predictedBudget.toString())),
         DataCell(Text(projectInfo.predictedDuration.toString())),
@@ -93,7 +109,6 @@ class ProjectDemandsTableState extends State<ProjectDemandsTable> {
                 child: Text('Approve', style: TextStyle(color: greenColor)),
                 onPressed: () async {
                   try {
-
                     projectInfo.isApproved = true;
                     await apiService.updateProject(projectInfo.id!, projectInfo);
                     setState(() {
@@ -107,12 +122,12 @@ class ProjectDemandsTableState extends State<ProjectDemandsTable> {
               ),
               SizedBox(width: 6),
               TextButton(
-                child: Text('Edit', style: TextStyle(color: greenColor)),
+                child: Text('View', style: TextStyle(color: greenColor)),
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => EditProjectScreen(project: projectInfo),
+                      builder: (context) => ViewProjectScreen(project: projectInfo),
                     ),
                   );
                 },
