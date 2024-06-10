@@ -29,10 +29,11 @@ class SideMenu extends StatelessWidget {
                     SizedBox(
                       height: defaultPadding * 3,
                     ),
-                    Image.asset(
-                      "assets/logo/logo_icon.png",
-                      scale: 5,
-                    ),
+                    Text("PPMS"),
+                    // Image.asset(
+                    //   "assets/logo/logo_icon.png",
+                    //   scale: 5,
+                    // ),
                     SizedBox(
                       height: defaultPadding,
                     ),

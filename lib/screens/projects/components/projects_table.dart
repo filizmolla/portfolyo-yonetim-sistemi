@@ -79,8 +79,24 @@ class ProjectsTableState extends State<ProjectsTable> {
   DataRow projectDataRow(Project projectInfo, BuildContext context) {
     return DataRow(
       cells: [
-        DataCell(Text(projectInfo.name!)),
-        DataCell(Text(projectInfo.description!)),
+        DataCell(
+          Container(
+            width: 100, // Set the maximum width for the description column
+            child: Text(
+              projectInfo.name!,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ),
+        DataCell(
+          Container(
+            width: 100, // Set the maximum width for the description column
+            child: Text(
+              projectInfo.description!,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ),
         DataCell(Text(projectInfo.isLegalObligation.toString())),
         DataCell(Text(projectInfo.predictedBudget.toString())),
         DataCell(Text(projectInfo.predictedDuration.toString())),
