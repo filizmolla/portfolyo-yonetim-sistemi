@@ -70,9 +70,9 @@ class _CalculateDemandsScreenState extends State<CalculateDemandsScreen> {
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         final projectNames = data[1]['project_names'].join(', ');
-        final totalBudget = data[1]['total_budget'];
-        final totalReturn = data[1]['total_return'];
-        final totalProfit = data[1]['total_profit'];
+        final totalBudget = "Total Budget: " + data[1]['total_budget'].toString();
+        final totalReturn = "Total Return: " + data[1]['total_return'].toString();
+        final totalProfit = "Total Profit: " + data[1]['total_profit'].toString();
         final data_show = [projectNames, totalBudget, totalReturn, totalProfit];
 
         return data_show;
@@ -91,7 +91,7 @@ class _CalculateDemandsScreenState extends State<CalculateDemandsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Project Demands'),
+        title: Text('Select Projects'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -181,11 +181,9 @@ class _CalculateDemandsScreenState extends State<CalculateDemandsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Project Demands Results",
+                      "Project Selection Results",
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    //TODO: Display the results in a more readable format
-
                     ..._apiResponse.map((result) => Text(result.toString())).toList(),
                   ],
                 ),
