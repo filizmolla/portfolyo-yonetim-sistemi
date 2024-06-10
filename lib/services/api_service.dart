@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:http/http.dart' as http;
 import 'package:untitled/models/project_model.dart';
+import 'package:untitled/models/roles_model.dart';
+
 
 class ApiService {
   final String baseUrl;
@@ -176,4 +178,64 @@ class ApiService {
       return null;
     }
   }
+
+  Future<List<Role>> fetchRoles() async {
+    final response = await http.get(Uri.parse('$baseUrl/roles'));
+
+    if (response.statusCode == 200) {
+      List<dynamic> body = json.decode(response.body);
+      List<Role> roles = body.map((dynamic item) => Role.fromJson(item)).toList();
+      return roles;
+    } else {
+      throw Exception('Failed to load roles');
+    }
+  }
+
+
+
+  Future<Role> fetchRole(int id) async {
+    final response = await http.get(Uri.parse('$baseUrl/roles/$id'));
+    if (response.statusCode == 200) {
+      return Role.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load role');
+    }
+  }
+
+  Future<Role> addRole(Role role) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/roles'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(role.toJson()),
+    );
+    if (response.statusCode == 201) {
+      return Role.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to add role');
+    }
+  }
+
+  Future<Role> updateRole(int id, Role role) async {
+    final response = await http.put(
+      Uri.parse('$baseUrl/roles/$id'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(role.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return Role.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to update role');
+    }
+  }
+
+  Future<void> deleteRole(int id) async {
+    final response = await http.delete(Uri.parse('$baseUrl/roles/$id'));
+    if (response.statusCode != 200) {
+      throw Exception('Failed to delete role');
+    }
+  }
+
+
+
+
 }

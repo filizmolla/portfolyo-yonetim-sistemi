@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/screens/projects/add_project_screen.dart';
 import 'package:untitled/screens/projects/calculate_demands_screen.dart';
 import 'package:untitled/screens/projects/components/project_demands_table.dart';
+import 'package:untitled/screens/roles/role_screen.dart';
 import '../dashboard/components/header.dart';
 import '../forms/input_form.dart';
 
@@ -83,6 +84,32 @@ class ProjectDemandsScreen extends StatelessWidget {
                       "Calculate",
                     ),
                   ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  ElevatedButton.icon(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: defaultPadding * 1.5,
+                        vertical:
+                        defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RoleScreen(),
+                        ),
+                      );
+                    },
+                    icon: Icon(Icons.calculate),
+                    label: Text(
+                      "Roles",
+                    ),
+                  ),
+
                 ],
               ),
 
