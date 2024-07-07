@@ -23,7 +23,7 @@ class Header extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Hello, Deniz 👋",
+                "Hello, Admin 👋",
                 style: Theme.of(context).textTheme.headline6,
               ),
               SizedBox(
@@ -71,7 +71,7 @@ class ProfileCard extends StatelessWidget {
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-              child: Text("Deniz"),
+              child: Text("Admin"),
             ),
           Icon(Icons.keyboard_arrow_down),
         ],

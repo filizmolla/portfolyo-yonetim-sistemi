@@ -1,15 +1,5 @@
 import 'package:untitled/core/constants/color_constants.dart';
-import 'package:untitled/responsive.dart';
-
-import 'package:untitled/screens/dashboard/components/mini_information_card.dart';
-
-import 'package:untitled/screens/dashboard/components/recent_forums.dart';
-import 'package:untitled/screens/dashboard/components/recent_users.dart';
-import 'package:untitled/screens/dashboard/components/user_details_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/screens/projects/components/project_demands_table.dart';
-import 'package:untitled/screens/projects/project_demands_screen.dart';
-
 import '../projects/components/projects_table.dart';
 import 'components/header.dart';
 
@@ -25,7 +15,6 @@ class DashboardScreen extends StatelessWidget {
             children: [
               Header(),
               SizedBox(height: defaultPadding),
-             // MiniInformation(), //Bunu kaldirdigimda bilgi kartlari gitti!!!
               SizedBox(height: defaultPadding),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,22 +28,9 @@ class DashboardScreen extends StatelessWidget {
                         ProjectsTable(),
                         SizedBox(height: defaultPadding),
 
-                        if (Responsive.isMobile(context))
-                          SizedBox(height: defaultPadding),
-                        if (Responsive.isMobile(context)) UserDetailsWidget(),
                       ],
                     ),
                   ),
-
-                  //TAKVIM!
-                  // if (!Responsive.isMobile(context))
-                  //   SizedBox(width: defaultPadding),
-                  // // On Mobile means if the screen is less than 850 we dont want to show it
-                  // if (!Responsive.isMobile(context))
-                  //   Expanded(
-                  //     flex: 2,
-                  //     child: UserDetailsWidget(),
-                  //   ),
 
                 ],
               )

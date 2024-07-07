@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/screens/login/login_screen.dart';
 import 'package:untitled/screens/home/home_screen.dart';
 
 class Routes {
   Routes._();
 
-  //static variables
-  static const String login = '/login';
   static const String home = '/home';
 
-
-
   static final routes = <String, WidgetBuilder>{
-    // splash: (BuildContext context) => SplashScreen(),
-    login: (BuildContext context) => Login(
-          title: '',
-        ),
     home: (BuildContext context) => HomeScreen(),
   };
 }
@@ -28,7 +19,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       });
     default:
       return MaterialPageRoute(builder: (BuildContext context) {
-        return Login(title: "Hollo");
+        return HomeScreen();
       });
   }
 }
